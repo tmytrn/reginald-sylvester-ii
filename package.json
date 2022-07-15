@@ -4,13 +4,18 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "echo 'Building Sanity to public/admin' && cd admin && yarn && npx @sanity/cli build ../public/admin -y && echo 'Done'",
     "build": "next build",
     "start": "next start",
+    "sanity": "cd admin && sanity start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@portabletext/react": "^1.0.6",
     "autoprefixer": "^10.4.7",
+    "moment": "^2.29.4",
     "next": "12.2.0",
+    "next-sanity": "^0.6.0",
     "postcss": "^8.4.14",
     "react": "18.2.0",
     "react-dom": "18.2.0",

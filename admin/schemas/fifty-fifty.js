@@ -1,0 +1,33 @@
+import { BsLayoutSplit } from "react-icons/bs";
+
+export default {
+  name: "fiftyFifty",
+  title: "Fifty Fifty",
+  icon: BsLayoutSplit,
+  type: "object",
+  fields: [
+    {
+      title: "Content",
+      name: "modules",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "artwork" }],
+        },
+      ],
+      validation: (Rule) => Rule.required().max(2),
+    },
+  ],
+
+  preview: {
+    select: {
+      title: "Fifty Fifty",
+    },
+    prepare() {
+      return {
+        title: "Fifty Fifty",
+      };
+    },
+  },
+};
