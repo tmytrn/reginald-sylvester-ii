@@ -40,7 +40,7 @@ export default function Home({ categories, entries, preview }) {
       </Head>
       <Header />
 
-      <main className="flex flex-col selection:md:flex-row px-4 sm:px-4 lg:px-8">
+      <main className="flex flex-col md:flex-row px-4 sm:px-4 lg:px-8">
         <div className="w-full md:w-1/2">
           {categories &&
             categories.map((category, key) => (
