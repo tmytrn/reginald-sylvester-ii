@@ -4,7 +4,7 @@ const FiftyFifty = ({ data }) => {
   // console.log("fiftyFifty: ", data);
   const { modules } = data;
   return (
-    <div className="w-full flex border-b border-black ml-4 pb-2 mb-2">
+    <div className="w-full flex border-b border-black ml-0 mt-2 md:mt-0 md:ml-4 pb-2 mb-2">
       {modules ? (
         modules.map((module, key) => (
           <div className="w-1/2">

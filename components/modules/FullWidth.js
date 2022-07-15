@@ -5,7 +5,7 @@ const FullWidth = ({ data }) => {
   const type = data.modules[0]._type;
   data = data.modules[0];
   return (
-    <div className="w-full pl-4 font-normal text-base">
+    <div className="w-full md:pl-4 font-normal text-base">
       {type === "artwork" && <img src={data.image.asset.url} />}
       {type === "blockText" && (
         <PortableText value={data.blocks}></PortableText>
