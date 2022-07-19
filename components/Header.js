@@ -1,6 +1,6 @@
 const Header = () => {
   return (
-    <nav className="flex justify-between items-start px-4 sm:px-4 lg:px-8 pt-4 sm:pt-4 lg:pt-8">
+    <nav className=" w-full flex justify-between items-start px-4 sm:px-4 lg:px-8 pt-4 sm:pt-4 lg:pt-8">
       <div className="justify-start">
         <h1 className="text-3xl uppercase font-sans font-medium">
           Reginald Sylvester II

@@ -13,8 +13,10 @@ export default {
       of: [
         {
           type: "reference",
+          title: "Artwork",
           to: [{ type: "artwork" }],
         },
+        { type: "blockText", name: "blockText", title: "Block Text" },
       ],
       validation: (Rule) => Rule.required().max(2),
     },

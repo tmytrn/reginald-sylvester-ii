@@ -12,7 +12,6 @@ import client, {
 } from "@lib/sanity";
 
 import { groq } from "next-sanity";
-import postcssConfig from "postcss.config";
 
 export default function Home({ categories, entries, preview }) {
   entries = entries[0];
@@ -38,34 +37,45 @@ export default function Home({ categories, entries, preview }) {
         <meta name="description" content="B.1987" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
+      {/* <Header /> */}
 
-      <main className="flex flex-col md:flex-row px-4 sm:px-4 lg:px-8">
-        <div className="w-full md:w-1/2">
-          {categories &&
-            categories.map((category, key) => (
-              <>
-                <div
-                  key={key}
-                  className="flex justify-between border-b border-black pt-4 align-middle"
-                >
-                  <p className="text-base font-medium uppercase ">
-                    {category.name}
-                  </p>
-                  <div className="dot text-base">●</div>
-                </div>
-                {category.posts?.map((post, key) => (
-                  <div className="font-normal pt-2 " key={key}>
-                    {post.title}
+      <main className="">
+        <div className="fixed max-h-full w-1/2">
+          {" "}
+          <div className="relative w-full z-10 pl-4 md:pl-8">
+            {categories &&
+              categories.map((category, key) => (
+                <>
+                  <div
+                    key={key}
+                    className="flex justify-between border-b border-black pt-4 align-middle"
+                  >
+                    <p className="text-base font-medium uppercase ">
+                      {category.name}
+                    </p>
+                    <div className="dot text-base">●</div>
                   </div>
-                ))}
-              </>
-            ))}
+                  {category.posts?.map((post, key) => (
+                    <div className="font-normal pt-2 " key={key}>
+                      {post.title}
+                    </div>
+                  ))}
+                </>
+              ))}
+          </div>
         </div>
-        <div className="w-full md:w-1/2 overflow-auto ml-0 md:ml-4">
-          {entries.modules.map((module, key) => (
-            <Module key={key} module={module} />
-          ))}
+
+        <div className="w-full relative overflow-visible mb-8">
+          <div className="ml-auto mr-0 relative w-full md:w-1/2 z-10 overflow-visible mx-2 md:px-4">
+            <div className="flex justify-end w-full pt-4 sm:pt-4 lg:pt-8">
+              <a className="text-3xl font-sans font-medium uppercase ml-auto mr-0">
+                Index
+              </a>
+            </div>
+            {entries.modules.map((module, key) => (
+              <Module key={key} module={module} />
+            ))}
+          </div>
         </div>
       </main>
     </div>
@@ -86,18 +96,25 @@ const postQuery = groq`
   'modules' : modules[]{
     _type == 'fiftyFifty' => {
     _type,
-    modules[]->{
-      title,
-      date,
-      etc,
-      image{
-        asset->{url}
+    modules[]{
+      _type == 'reference' => @->{
+        _type,
+        title,
+        date,
+        etc,
+        image{
+          asset->{url}
+        }
       },
+      _type =='blockText' => {
+        _type,
+        blocks,
+      }
     }},
     _type == 'fullWidth' => {
       _type,
-      modules[]->{
-        _type == 'artwork' => {
+      modules[]{
+        _type == 'reference' => @->{
           _type,
           title,
           date,
@@ -106,8 +123,9 @@ const postQuery = groq`
             asset->{url}
           }
         },
-        _type =='blockText' =>{
-          ...,
+        _type =='blockText' => {
+          _type,
+          blocks,
         }
       }
   }

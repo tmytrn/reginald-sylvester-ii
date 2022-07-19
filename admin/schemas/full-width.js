@@ -12,8 +12,15 @@ export default {
       type: "array",
       of: [
         {
+          type: "blockText",
+          name: "blockText",
+          title: "Block Text",
+        },
+        {
           type: "reference",
-          to: [{ type: "blockText" }, { type: "artwork" }],
+          name: "artwork",
+          title: "Artwork",
+          to: [{ type: "artwork" }],
         },
       ],
       validation: (Rule) => Rule.required().max(1),

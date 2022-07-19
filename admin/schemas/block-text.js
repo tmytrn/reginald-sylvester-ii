@@ -11,7 +11,6 @@ export default {
       name: "blocks",
       type: "array",
       of: [{ type: "block" }],
-      validation: (Rule) => Rule.required().max(1),
     },
   ],
 
