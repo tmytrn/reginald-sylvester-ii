@@ -9,8 +9,12 @@ module.exports = {
       sans: ["Gotham", "sans-serif"],
     },
     extend: {
+      flex: {
+        custom1: "1 0 auto",
+      },
       colors: {
         "reginald-gray": "#e2e6ef",
+        "regi-red": "#540d08",
       },
       aspectRatio: {
         "4/3": "4 / 3",

@@ -8,6 +8,7 @@ body {
   margin: 0;
   background-color: #e2e6ef;
   font-family: "Gotham";
+  min-height: 100vh;
 }
 
 a {
@@ -21,4 +22,13 @@ p {
 
 * {
   box-sizing: border-box;
+}
+
+.left-side{
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.left-side::-webkit-scrollbar{
+  display: none;  /* Safari and Chrome */
 }

@@ -4,6 +4,8 @@ import Module from "components/modules";
 import { useEffect } from "react";
 import { Router, useRouter } from "next/router";
 import Header from "components/Header";
+import Footer from "components/Footer";
+import moment from "moment";
 
 import client, {
   getClient,
@@ -30,55 +32,78 @@ export default function Home({ categories, entries, preview }) {
   //   });
   // }, []);
 
+  const dummy = 25;
+
   return (
-    <div className="">
+    <>
       <Head>
-        <title>REGINALED SYLVESTER II</title>
+        <title>REGINALD SYLVESTER II</title>
         <meta name="description" content="B.1987" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* <Header /> */}
+      <Header />
 
-      <main className="">
-        <div className="fixed max-h-full w-1/2">
-          {" "}
-          <div className="relative w-full z-10 pl-4 md:pl-8">
-            {categories &&
-              categories.map((category, key) => (
-                <>
-                  <div
-                    key={key}
-                    className="flex justify-between border-b border-black pt-4 align-middle"
-                  >
-                    <p className="text-base font-medium uppercase ">
-                      {category.name}
-                    </p>
-                    <div className="dot text-base">●</div>
-                  </div>
-                  {category.posts?.map((post, key) => (
-                    <div className="font-normal pt-2 " key={key}>
-                      {post.title}
+      <main className="flex flex-col md:flex-row h-screen">
+        <div className="flex-custom1 md:h-0 relative w-full md:w-1/2">
+          <div className="left-side relative md:fixed top-0 left-0  flex-custom1 overflow-y-auto w-full md:w-1/2 max-h-screen ml-0 mr-auto">
+            <div className="px-4 pt-32">
+              {/* <a
+                className="text-2xl md:text-3xl uppercase font-sans font-medium"
+                href="/about"
+              >
+                Reginald Sylvester II <br /> B. 1987.
+              </a> */}
+              {categories &&
+                categories.map((category, key) => (
+                  <div>
+                    <div
+                      key={key}
+                      className="flex justify-between border-b border-black pt-4 align-middle"
+                    >
+                      <p className="text-base font-medium uppercase ">
+                        {category.name}
+                      </p>
+                      <div className="dot text-base">●</div>
                     </div>
-                  ))}
-                </>
-              ))}
+
+                    {category.posts?.map((post, key) => (
+                      <div className="font-normal pt-2 " key={key}>
+                        {post.title}
+                      </div>
+                    ))}
+                  </div>
+                ))}
+            </div>
           </div>
         </div>
 
-        <div className="w-full relative overflow-visible mb-8">
-          <div className="ml-auto mr-0 relative w-full md:w-1/2 z-10 overflow-visible mx-2 md:px-4">
-            <div className="flex justify-end w-full pt-4 sm:pt-4 lg:pt-8">
-              <a className="text-3xl font-sans font-medium uppercase ml-auto mr-0">
+        <div className="hidden md:block flex-custom1 w-full md:w-1/2 relative z-0 ml-auto mr-0">
+          <div className="flex flex-col ml-auto mr-0 relative w-full overflow-visible ">
+            <div className="px-4  pt-32 mb-12">
+              {/* <a
+                className="hidden sm:block text-regi-red text-3xl font-sans font-medium text-right uppercase ml-auto mr-0 pb-8"
+                href="/"
+              >
                 Index
-              </a>
+              </a> */}
+
+              <h3 className="pt-[4px] text-2xl uppercase font-bold pb-4">
+                {entries.title}
+                <br />
+                {entries.location}
+                <br />
+                {moment(entries.date).year()}
+              </h3>
+
+              {entries.modules.map((module, key) => (
+                <Module key={key} module={module} />
+              ))}
             </div>
-            {entries.modules.map((module, key) => (
-              <Module key={key} module={module} />
-            ))}
           </div>
         </div>
       </main>
-    </div>
+      <Footer activePage={"Index"} />
+    </>
   );
 }
 
@@ -93,6 +118,8 @@ const postQuery = groq`
 *[_type=="post"]{
   title,
   slug,
+  location,
+  date,
   'modules' : modules[]{
     _type == 'fiftyFifty' => {
     _type,

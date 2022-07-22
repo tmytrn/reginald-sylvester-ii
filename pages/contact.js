@@ -3,6 +3,7 @@ import Dot from "svg/Dot";
 import Head from "next/head";
 import axios from "axios";
 import { useState } from "react";
+import Footer from "components/Footer";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -17,6 +18,8 @@ const Contact = ({}) => {
   const labelStyles = "font-bold uppercase pb-2";
   const formGroupStyles =
     "w-full flex justify-between border-b-2 border-black mb-2";
+
+  const validateForm = () => {};
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -47,10 +50,10 @@ const Contact = ({}) => {
         <meta name="description" content="Contact us" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <main className="flex flex-col h-screen">
         <Header />
-        <div className="m-8">
-          <form className="flex flex-col w-1/2">
+        <div className="m-4 mt-32">
+          <form className="flex flex-col w-full md:w-1/2">
             <formgroup className={formGroupStyles}>
               <label htmlFor="name" className={labelStyles}>
                 Name-
@@ -98,7 +101,7 @@ const Contact = ({}) => {
                 onChange={(e) => {
                   setMessage(e.target.value);
                 }}
-                className="w-3/4 bg-transparent focus:cursor-text focus:outline-none focus:ring focus:border-blue-500 "
+                className="w-3/4 h-16 bg-transparent focus:cursor-text focus:outline-none focus:ring focus:border-blue-500 "
               ></textarea>
             </formgroup>
             <button
@@ -116,6 +119,7 @@ const Contact = ({}) => {
           </form>
           <div className="pt-4">{mailMessage}</div>
         </div>
+        <Footer activePage={"Contact"} />
       </main>
     </div>
   );

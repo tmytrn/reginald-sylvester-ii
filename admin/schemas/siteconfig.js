@@ -28,6 +28,19 @@ export default {
         hotspot: true,
       },
     },
+    {
+      name: "bio",
+      title: "Bio",
+      type: "array",
+      of: [{ type: "block" }],
+    },
+    {
+      name: "cv",
+      title: "CV",
+      type: "array",
+      of: [{ type: "block" }],
+    },
+
     // other fields
     // ...
   ],
