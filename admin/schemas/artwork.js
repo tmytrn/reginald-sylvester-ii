@@ -1,9 +1,9 @@
-import { BsCursorText } from "react-icons/bs";
+import { BsCardImage } from "react-icons/bs";
 
 export default {
   name: "artwork",
   title: "Artworks",
-  icon: BsCursorText,
+  icon: BsCardImage,
   type: "document",
   fields: [
     {
