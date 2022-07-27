@@ -63,7 +63,7 @@ export default function Home({ categories, preview }) {
 
                     {category.posts?.map((post, key) => (
                       <a
-                        className={`pt-2 cursor-pointer flex justify-between ${
+                        className={`pt-2 cursor-pointer flex justify-between uppercase ${
                           currentPost == post.slug.current && showPost
                             ? "text-regi-red font-bold"
                             : "font-normal "
@@ -75,11 +75,13 @@ export default function Home({ categories, preview }) {
                         }}
                         data-category={post.slug.current}
                       >
-                        <span>{post.title}</span>
-                        <span className="hidden sm:flex">
-                          {post.location.split(",")[1]}
+                        <span className="basis-12/12 md:basis-6/12">
+                          {post.title}
                         </span>
-                        <span className="hidden sm:flex">
+                        <span className="basis-4/12 hidden sm:flex text-left">
+                          {post.location}
+                        </span>
+                        <span className="basis-2/12 hidden sm:flex justify-end">
                           {moment(post.date).year()}
                         </span>
                       </a>
