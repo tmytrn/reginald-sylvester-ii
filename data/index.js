@@ -1,6 +1,5 @@
 import { getClient } from "@lib/sanity";
 import * as queries from "./queries";
-import PicoSanity from "picosanity";
 
 export const getAllCategories = async () => {
   const data = await getClient().fetch(queries.categoryQuery);
