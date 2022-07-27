@@ -1,23 +1,8 @@
 import nodemailer from "nodemailer";
 
-// create reusable transporter object using the default SMTP transport
-// const transporter = nodemailer.createTransport({
-//   host: "smtp.office365.com",
-//   port: 587,
-//   auth: {
-//     user: "hello@eqoffice.com",
-//     pass: "BostonRocks2019!",
-//   },
-//   tls: {
-//     rejectUnauthorized: false,
-//   },
-// });
-
 export default async (req, res) => {
   let { name, email, subject, message } = req.body;
   // setup email data with unicode symbols
-
-  let nodemailer = require("nodemailer");
 
   const transporter = nodemailer.createTransport({
     port: 465,
