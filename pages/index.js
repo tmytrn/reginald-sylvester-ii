@@ -20,7 +20,7 @@ const fetcher = (query) => {
 
 function Home({ categories, preview }) {
   const [currentPost, setCurrentPost] = useState();
-  const [showPost, setShowPost] = useState("false");
+  const [showPost, setShowPost] = useState(false);
   // const { data, isValidating, error } = useSWR(`${currentPost}`, fetcher);
   const [loaderDidRun, setLoaderDidRun] = useContext(LoaderContext);
   const router = useRouter();
@@ -37,7 +37,7 @@ function Home({ categories, preview }) {
   // }, []);
 
   const mainVariants = {
-    initial: { opacity: 0 },
+    initial: { opacity: 1 },
     done: { opacity: 1 },
     animate: {
       opacity: [0, 1],
@@ -62,13 +62,19 @@ function Home({ categories, preview }) {
         />
 
         <motion.main
-          className="flex flex-col md:flex-row h-screen"
+          className={`flex flex-col md:flex-row h-screen ${
+            showPost ? "z-30" : "z-40"
+          }`}
           variants={mainVariants}
           initial={loaderDidRun ? "done" : "initial"}
           animate={loaderDidRun ? "done" : "animate"}
           transition={{ ease: "easeOut", delay: 3, duration: 1.5 }}
         >
-          <div className="flex-custom1 md:h-0 relative w-full md:w-1/2">
+          <div
+            className={`flex-custom1 md:h-0 relative w-full md:w-1/2 ${
+              showPost ? "z-30" : "z-40"
+            }`}
+          >
             <div className="left-side relative md:fixed top-0 left-0  flex-custom1 overflow-y-auto w-full md:w-1/2 max-h-screen ml-0 mr-auto">
               <div className="px-2 md:px-4 pt-24 md:pt-32">
                 {categories &&

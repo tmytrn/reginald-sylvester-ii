@@ -71,7 +71,7 @@ const Contact = ({}) => {
         animate={loaderDidRun ? "done" : "animate"}
         transition={{ ease: "easeOut", delay: 3, duration: 1.5 }}
       >
-        <div className="m-4 mt-32">
+        <div className="m-2 mt-32">
           <form className="flex flex-col w-full md:w-1/2">
             <formgroup className={formGroupStyles}>
               <label htmlFor="name" className={labelStyles}>
@@ -139,7 +139,11 @@ const Contact = ({}) => {
           </form>
           <div className="pt-4">{mailMessage}</div>
         </div>
-        <Footer activePage={"Contact"} />
+        <Footer
+          activePage={"Contact"}
+          loaderDidRun={loaderDidRun}
+          setLoaderDidRun={setLoaderDidRun}
+        />
       </motion.main>
     </div>
   );

@@ -32,7 +32,7 @@ const About = ({ data }) => {
         loaderDidRun={loaderDidRun}
         setLoaderDidRun={setLoaderDidRun}
       />
-      <div className="w-full md:w-1/2 px-4 pt-32 flex flex-col h-screen">
+      <div className="w-full md:w-1/2 px-2 pt-32 flex flex-col h-screen">
         <Accordion title={"Bio"}>
           <div className="text-sm mt-4">
             <PortableText value={data.bio} />
@@ -43,7 +43,7 @@ const About = ({ data }) => {
             <PortableText value={data.cv} />
           </div>
         </Accordion>
-        <Footer />
+        <Footer loaderDidRun={loaderDidRun} setLoaderDidRun={setLoaderDidRun} />
       </div>
     </>
   );
