@@ -11,7 +11,7 @@ const Header = ({
   loaderDidRun,
 }) => {
   const variants = {
-    initial: { y: "50%" },
+    initial: { y: "calc(50%-72px)" },
     done: { y: "0%" },
     animate: {
       y: ["50%", "0%"],

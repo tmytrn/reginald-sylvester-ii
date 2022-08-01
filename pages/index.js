@@ -82,11 +82,12 @@ function Home({ categories, preview }) {
                       {category.posts?.map((post, key) => (
                         <a
                           className={` cursor-pointer flex justify-between uppercase text-sm ${
-                            currentPost == post.slug.current && showPost
+                            currentPost?.slug.current == post.slug.current &&
+                            showPost
                               ? "text-regi-red font-bold pt-[2px]"
                               : "font-normal pt-[6px] mb-[-3px]"
                           }`}
-                          key={post.slug.setCurrentPost}
+                          key={post.slug.current}
                           onClick={() => {
                             setCurrentPost(post);
                             setShowPost(true);
