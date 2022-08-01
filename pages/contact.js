@@ -2,8 +2,12 @@ import Header from "components/Header";
 import Dot from "svg/Dot";
 import Head from "next/head";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Footer from "components/Footer";
+import TextareaAutosize from "react-textarea-autosize";
+import LoaderContext from "components/LoaderContext";
+import MyLayout from "components/Layout";
+import { motion } from "framer-motion";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -14,8 +18,9 @@ const Contact = ({}) => {
   const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [mailMessage, setMailMessage] = useState("");
+  const [loaderDidRun, setLoaderDidRun] = useContext(LoaderContext);
 
-  const labelStyles = "font-bold uppercase pb-2";
+  const labelStyles = "font-bold uppercase";
   const formGroupStyles =
     "w-full flex justify-between border-b-2 border-black mb-2";
 
@@ -43,6 +48,14 @@ const Contact = ({}) => {
       });
   };
 
+  const mainVariants = {
+    initial: { opacity: 0 },
+    done: { opacity: 1 },
+    animate: {
+      opacity: [0, 1],
+    },
+  };
+
   return (
     <div>
       <Head>
@@ -50,8 +63,14 @@ const Contact = ({}) => {
         <meta name="description" content="Contact us" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="flex flex-col h-screen">
-        <Header />
+      <Header loaderDidRun={loaderDidRun} setLoaderDidRun={setLoaderDidRun} />
+      <motion.main
+        className="flex flex-col h-screen text-sm "
+        variants={mainVariants}
+        initial={loaderDidRun ? "done" : "initial"}
+        animate={loaderDidRun ? "done" : "animate"}
+        transition={{ ease: "easeOut", delay: 3, duration: 1.5 }}
+      >
         <div className="m-4 mt-32">
           <form className="flex flex-col w-full md:w-1/2">
             <formgroup className={formGroupStyles}>
@@ -95,32 +114,33 @@ const Contact = ({}) => {
               <label htmlFor="message" className={labelStyles}>
                 Message-
               </label>
-              <textarea
+              <TextareaAutosize
+                minRows={5}
                 type="text"
                 name="message"
                 onChange={(e) => {
                   setMessage(e.target.value);
                 }}
                 className="w-3/4 h-16 bg-transparent focus:cursor-text focus:outline-none focus:ring focus:border-blue-500 "
-              ></textarea>
+              />
             </formgroup>
             <button
               type="submit"
               onClick={(e) => {
                 handleSubmit(e);
               }}
-              className="w-full flex justify-between align-middle text-left font-bold uppercase border-b-2 border-black pb-2"
+              className="w-full flex justify-between align-middle text-left font-bold uppercase border-b-2 border-black pb-[6px]"
             >
               Send{" "}
-              <span className="w-4 h-4 text-center my-auto">
-                <Dot />
+              <span className="w-3 h-3 text-center my-auto">
+                <Dot color={"#000"} />
               </span>
             </button>
           </form>
           <div className="pt-4">{mailMessage}</div>
         </div>
         <Footer activePage={"Contact"} />
-      </main>
+      </motion.main>
     </div>
   );
 };

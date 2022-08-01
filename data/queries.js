@@ -45,8 +45,51 @@ export const postQuery = `
   }`;
 
 export const categoryQuery = `
-*[_type=="category"] | order(_createdAt asc){
-  name,
-  "posts": *[_type=="post" && categories->name==^.name]{title, slug, categories->, location, date}
+*[_type == "siteconfig"]{
+  categories[]->{
+    name,
+      "posts": *[_type=="post" && categories->name==^.name]{    title,
+        slug,
+        location,
+        date,
+        'modules' : modules[]{
+          _type == 'fiftyFifty' => {
+          _type,
+          modules[]{
+            _type == 'reference' => @->{
+              _type,
+              title,
+              date,
+              etc,
+              image{
+                asset->{url}
+              }
+            },
+            _type =='blockText' => {
+              _type,
+              blocks,
+            }
+          }},
+          _type == 'fullWidth' => {
+            _type,
+            modules[]{
+              ...,
+              _type == 'artwork' => @->{
+              _type,
+              title,
+              date,
+              etc,
+              image{
+                asset->{url}
+              }
+              },
+              _type =='blockText' => {
+                _type,
+                blocks,
+              }
+            }
+           }
+    }}
+  }
 }
 `;

@@ -6,33 +6,43 @@ import client, {
 } from "@lib/sanity";
 import { groq } from "next-sanity";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Accordion from "../components/Accordion";
 import Footer from "../components/Footer";
+import Head from "next/head";
+import LoaderContext from "components/LoaderContext";
 
 const About = ({ data }) => {
   data = data[0];
-  const [isBioOpen, setIsBioOpen] = useState(false);
-  const [isCvOpen, setIsCvOpen] = useState(false);
-
+  const [loaderDidRun, setLoaderDidRun] = useContext(LoaderContext);
   return (
     <>
-      <Header isAbout={true} />
+      <Head>
+        <title>About | REGINALED SYLVESTER II</title>
+        <meta
+          name="description"
+          content="Reginald Sylvester II
+          Born in Jacksonville, North Carolina 1987
+          Lives and works in Brooklyn, New York"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Header
+        isAbout={true}
+        loaderDidRun={loaderDidRun}
+        setLoaderDidRun={setLoaderDidRun}
+      />
       <div className="w-full md:w-1/2 px-4 pt-32 flex flex-col h-screen">
-        <Accordion
-          i={0}
-          expanded={isBioOpen}
-          setExpanded={setIsBioOpen}
-          data={data.bio}
-          title={"Bio"}
-        />
-        <Accordion
-          i={1}
-          expanded={isCvOpen}
-          setExpanded={setIsCvOpen}
-          data={data.cv}
-          title={"CV"}
-        />
+        <Accordion title={"Bio"}>
+          <div className="text-sm mt-4">
+            <PortableText value={data.bio} />
+          </div>
+        </Accordion>
+        <Accordion title={"CV"}>
+          <div className="text-sm mt-4">
+            <PortableText value={data.cv} />
+          </div>
+        </Accordion>
         <Footer />
       </div>
     </>

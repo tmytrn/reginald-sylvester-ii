@@ -9,6 +9,9 @@ module.exports = {
       sans: ["Gotham", "sans-serif"],
     },
     extend: {
+      margin: {
+        center: "0 auto",
+      },
       flex: {
         custom1: "1 0 auto",
       },

@@ -2,7 +2,6 @@ import Module from "./modules";
 import moment from "moment";
 
 const Post = ({ data }) => {
-  data = data[0];
   return (
     <div className="hidden md:flex flex-col ml-auto mr-0 relative w-full overflow-visible ">
       <div className="px-4  pt-32 mb-12">

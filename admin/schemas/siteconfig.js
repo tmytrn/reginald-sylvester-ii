@@ -29,6 +29,13 @@ export default {
       },
     },
     {
+      name: "categories",
+      title: "Categories",
+      description: "Order of categories here will be the same on the site",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "category" }] }],
+    },
+    {
       name: "bio",
       title: "Bio",
       type: "array",
