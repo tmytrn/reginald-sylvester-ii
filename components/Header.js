@@ -37,7 +37,7 @@ const Header = ({
           setLoaderDidRun(true);
         }, 1500);
       }}
-      className={`md:bg-transparent fixed top-0 left-0 w-full  flex justify-between items-start px-2 sm:px-4 lg:px-4 pt-4 sm:pt-4 lg:pt-8 z-40 ${
+      className={`md:bg-transparent fixed top-0 left-0 w-full  flex justify-between items-start px-4 sm:px-4 lg:px-4 pt-8 z-40 ${
         loaderDidRun ? "bg-reginald-gray" : "bg-transparent h-screen"
       }`}
     >

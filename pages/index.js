@@ -60,10 +60,9 @@ function Home({ categories, preview }) {
           loaderDidRun={loaderDidRun}
           setLoaderDidRun={setLoaderDidRun}
         />
-
         <motion.main
           className={`flex flex-col md:flex-row h-screen ${
-            showPost ? "z-30" : "z-40"
+            showPost ? "z-30" : "z-30"
           }`}
           variants={mainVariants}
           initial={loaderDidRun ? "done" : "initial"}
@@ -72,11 +71,11 @@ function Home({ categories, preview }) {
         >
           <div
             className={`flex-custom1 md:h-0 relative w-full md:w-1/2 ${
-              showPost ? "z-30" : "z-40"
+              showPost ? "z-30" : "z-30"
             }`}
           >
             <div className="left-side relative md:fixed top-0 left-0  flex-custom1 overflow-y-auto w-full md:w-1/2 max-h-screen ml-0 mr-auto">
-              <div className="px-2 md:px-4 pt-24 md:pt-32">
+              <div className="px-4 md:px-4 pt-24 md:pt-32">
                 {categories &&
                   categories.map((category, key) => (
                     <Accordion title={category.name} key={category.id}>

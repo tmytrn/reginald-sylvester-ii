@@ -14,7 +14,7 @@ const Footer = ({ activePage, loaderDidRun }) => {
       initial={loaderDidRun ? "done" : "initial"}
       animate={loaderDidRun ? "done" : "animate"}
       transition={{ ease: "easeOut", delay: 3, duration: 1 }}
-      className="bg-reginald-gray md:bg-transparent w-full fixed left-0 bottom-0 md:left-auto md:right-0 mt-auto mb-0 justify-end px-2 pt-4 z-40"
+      className="bg-reginald-gray md:bg-transparent w-full fixed left-0 bottom-0 md:left-auto md:right-0 mt-auto mb-0 justify-end px-4 pt-4 z-40"
     >
       <div className="flex flex-col">
         <Link href="/">

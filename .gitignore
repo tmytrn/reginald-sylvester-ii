@@ -5,6 +5,5 @@ logs/
 package-lock.json
 .next/
 .swc
-
 .DS_Store
 
