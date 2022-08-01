@@ -32,7 +32,7 @@ const About = ({ data }) => {
         loaderDidRun={loaderDidRun}
         setLoaderDidRun={setLoaderDidRun}
       />
-      <div className="w-full md:w-1/2 px-4 pt-24 flex flex-col h-screen">
+      <div className="w-full md:w-1/2 px-4 pt-24 md:pt-32 flex flex-col h-screen">
         <Accordion title={"Bio"}>
           <div className="text-sm mt-4">
             <PortableText value={data.bio} />
