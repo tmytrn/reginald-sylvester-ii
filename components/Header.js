@@ -20,7 +20,6 @@ const Header = ({ page, data }) => {
       opacity: [0, 1],
     },
   };
-  console.log("loaderDidRun ", loaderDidRun);
 
   return (
     <nav

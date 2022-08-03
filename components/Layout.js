@@ -9,7 +9,7 @@ const MyLayout = ({ page, children }) => {
   const variants = {
     initial: {},
     animate: {
-      transition: { duration: 0.1, delayChildren: 1, staggerChildren: 2.5 },
+      transition: { duration: 0.1, delayChildren: 0.5, staggerChildren: 1.5 },
     },
   };
   const loaderVariants = {
@@ -18,7 +18,7 @@ const MyLayout = ({ page, children }) => {
     animate: {
       y: ["50%", "0%"],
       transition: {
-        duration: 3,
+        duration: 1.5,
       },
       transitionEnd: {
         background: "transparent",
