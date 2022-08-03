@@ -32,3 +32,10 @@ p {
 .left-side::-webkit-scrollbar{
   display: none;  /* Safari and Chrome */
 }
+
+input{ 
+  font-family: 'Times New Roman', Times, serif;
+}
+textarea{ 
+  font-family: 'Times New Roman', Times, serif;
+}

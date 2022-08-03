@@ -27,11 +27,7 @@ const About = ({ data }) => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header
-        isAbout={true}
-        loaderDidRun={loaderDidRun}
-        setLoaderDidRun={setLoaderDidRun}
-      />
+
       <div className="w-full md:w-1/2 px-4 pt-24 md:pt-32 flex flex-col h-screen">
         <Accordion title={"Bio"}>
           <div className="text-sm mt-4">
@@ -62,6 +58,7 @@ export async function getStaticProps({ params, preview = false }) {
   return {
     props: {
       data,
+      page: "about",
     },
     revalidate: 60,
   };

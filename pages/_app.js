@@ -6,7 +6,7 @@ import MyLayout from "components/Layout";
 function MyApp({ Component, pageProps }) {
   // console.log("pageProps.page ", pageProps);
   return (
-    <MyLayout>
+    <MyLayout page={pageProps.page}>
       <Component {...pageProps} />
     </MyLayout>
   );

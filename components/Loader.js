@@ -1,35 +1,26 @@
 import React, { useContext, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import LoaderContext from "./LoaderContext";
+import Link from "next/link";
 
-export default function Loader({ page }) {
-  const { loaderDidRun, setLoaderDidRun } = useContext(LoaderContext);
-  console.log("loaderDidRun ", loaderDidRun);
-  console.log("page", page);
-  return !loaderDidRun && page == "index" ? (
-    <div className="w-full h-screen absolute z-50 top-0 left-0 bg-reginald-gray">
-      <AnimatePresence exitBeforeEnter>
-        <motion.div
-          initial={{ opacity: 1 }}
-          animate={{
-            y: ["50%", "5%"],
-            opacity: [1, 1, 0],
-            transitionEnd: {
-              display: "none",
-            },
-          }}
-          transition={{ ease: "easeOut", delay: 1.5, duration: 1 }}
-          onAnimationComplete={() => setLoaderDidRun(true)}
-          className="w-full h-screen"
-        >
-          <h1 className="text-xl md:text-3xl uppercase font-sans font-medium">
+export default function Loader() {
+  const [loaderDidRun] = useContext(LoaderContext);
+
+  return (
+    <div
+      className={`fixed top-0 left-0 w-full flex justify-between items-start px-4 sm:px-4 lg:px-4 pt-8 z-40 ${
+        loaderDidRun ? "hidden" : "bg-reginald-gray h-full"
+      }`}
+    >
+      <Link href="/about">
+        <a className={`cursor-pointer hover:text-regi-red`}>
+          <h1 className="text-lg md:text-xl uppercase font-sans font-medium">
             Reginald Sylvester II
           </h1>
-          <p className="text-xl md:text-3xl font-sans font-medium inline-block">
+          <p className="text-lg md:text-xl font-sans font-medium inline-block">
             B. 1987.
           </p>
-        </motion.div>
-      </AnimatePresence>
+        </a>
+      </Link>
     </div>
-  ) : null;
+  );
 }

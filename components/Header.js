@@ -1,15 +1,10 @@
 import LeftArrow from "svg/LeftArrow";
 import Link from "next/link";
 import { motion } from "framer-motion";
-const Header = ({
-  isAbout,
-  isIndex,
-  data,
-  showPost,
-  setShowPost,
-  setLoaderDidRun,
-  loaderDidRun,
-}) => {
+import { useContext } from "react";
+import LoaderContext from "components/LoaderContext";
+const Header = ({ page, data }) => {
+  const { showPost, setShowPost, loaderDidRun } = useContext(LoaderContext);
   const variants = {
     initial: { y: "calc(50%-72px)" },
     done: { y: "0%" },
@@ -25,35 +20,33 @@ const Header = ({
       opacity: [0, 1],
     },
   };
+  console.log("loaderDidRun ", loaderDidRun);
 
   return (
-    <motion.nav
-      variants={variants}
-      initial={loaderDidRun ? "done" : "initial"}
-      animate={loaderDidRun ? "done" : "animate"}
-      transition={{ ease: "easeIn", delay: 1.5, duration: 1.25 }}
-      onAnimationComplete={() => {
-        setTimeout(() => {
-          setLoaderDidRun(true);
-        }, 1500);
-      }}
+    <nav
       className={`md:bg-transparent fixed top-0 left-0 w-full  flex justify-between items-start px-4 sm:px-4 lg:px-4 pt-8 z-40 ${
-        loaderDidRun ? "bg-reginald-gray" : "bg-transparent h-screen"
+        loaderDidRun ? "bg-reginald-gray h-auto" : "bg-transparent h-full"
       }`}
     >
       <div className="flex justify-between w-full">
         <Link href="/about">
-          <a className={`cursor-pointer ${isAbout ? "text-regi-red" : ""}`}>
-            <h1 className="text-xl md:text-3xl uppercase font-sans font-medium">
+          <a
+            className={`cursor-pointer hover:text-regi-red ${
+              page == "about" ? "text-regi-red" : ""
+            }`}
+          >
+            <h1 className="text-lg md:text-xl uppercase font-sans font-medium">
               Reginald Sylvester II
             </h1>
-            <p className="text-xl md:text-3xl font-sans font-medium inline-block">
+            <p className="text-lg md:text-xl font-sans font-medium inline-block">
               B. 1987.
             </p>
           </a>
         </Link>
         <a
-          className={`md:hidden ${showPost ? "block" : "hidden"}`}
+          className={`md:hidden ${
+            showPost && page == "index" ? "block" : "hidden"
+          }`}
           onClick={() => {
             setShowPost(false);
           }}
@@ -66,15 +59,15 @@ const Header = ({
           variants={indexVariants}
           initial={loaderDidRun ? "done" : "initial"}
           animate={loaderDidRun ? "done" : "animate"}
-          transition={{ ease: "easeOut", delay: 3, duration: 1 }}
-          className={`cursor-pointer hidden md:block text-3xl font-sans font-medium uppercase ${
-            isIndex ? "text-regi-red" : ""
+          transition={{ delay: 4 }}
+          className={`text-lg md:text-xl cursor-pointer hidden md:block font-sans font-medium uppercase hover:text-regi-red ${
+            page == "index" ? "text-regi-red" : ""
           }`}
         >
           Index
         </motion.a>
       </Link>
-    </motion.nav>
+    </nav>
   );
 };
 

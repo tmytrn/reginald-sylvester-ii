@@ -21,8 +21,8 @@ const Contact = ({}) => {
   const [loaderDidRun, setLoaderDidRun] = useContext(LoaderContext);
 
   const labelStyles = "font-bold uppercase";
-  const formGroupStyles =
-    "w-full flex justify-between border-b-2 border-black mb-2";
+  const divStyles =
+    "w-full flex justify-between border-b-2 border-black mb-2 text-black";
 
   const validateForm = () => {};
 
@@ -49,42 +49,43 @@ const Contact = ({}) => {
   };
 
   const mainVariants = {
-    initial: { opacity: 0 },
+    initial: { opacity: 0, y: 50 },
     done: { opacity: 1 },
+    exit: { opacity: 0, y: -100 },
     animate: {
       opacity: [0, 1],
+      y: 0,
     },
   };
 
   return (
-    <div>
+    <>
       <Head>
-        <title>Contact | REGINALED SYLVESTER II</title>
+        <title>Contact | REGINALD SYLVESTER II</title>
         <meta name="description" content="Contact us" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header loaderDidRun={loaderDidRun} setLoaderDidRun={setLoaderDidRun} />
       <motion.main
-        className="flex flex-col h-screen text-sm "
         variants={mainVariants}
-        initial={loaderDidRun ? "done" : "initial"}
-        animate={loaderDidRun ? "done" : "animate"}
-        transition={{ ease: "easeOut", delay: 3, duration: 1.5 }}
+        exit="exit"
+        className="flex flex-col w-full md:flex-row h-screen z-30 text-sm "
       >
-        <div className="m-4 mt-24 md:mt-32">
+        <div className="p-4 pt-24 md:pt-32 w-full">
           <form className="flex flex-col w-full md:w-1/2">
-            <formgroup className={formGroupStyles}>
+            <div className={divStyles}>
               <label htmlFor="name" className={labelStyles}>
                 Name-
               </label>
               <input
                 type="text"
                 name="name"
+                id="name"
                 onChange={(e) => setName(e.target.value)}
-                className="w-3/4 bg-transparent focus:cursor-text focus:outline-none focus:ring focus:border-blue-500 "
-              ></input>
-            </formgroup>
-            <formgroup className={formGroupStyles}>
+                required
+                className="w-3/4 bg-reginald-gray focus:outline-none focus:cursor-text"
+              />
+            </div>
+            <div className={divStyles}>
               <label htmlFor="email" className={labelStyles}>
                 Email-
               </label>
@@ -94,10 +95,11 @@ const Contact = ({}) => {
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
-                className="w-3/4 bg-transparent focus:cursor-text focus:outline-none focus:ring focus:border-blue-500 "
+                required
+                className="w-3/4 bg-reginald-gray focus:outline-none focus:cursor-text  focus:border-regi-red focus:ring-regi-red "
               ></input>
-            </formgroup>
-            <formgroup className={formGroupStyles}>
+            </div>
+            <div className={divStyles}>
               <label htmlFor="subject" className={labelStyles}>
                 Subject-
               </label>
@@ -107,10 +109,11 @@ const Contact = ({}) => {
                 onChange={(e) => {
                   setSubject(e.target.value);
                 }}
-                className="w-3/4 bg-transparent focus:cursor-text focus:outline-none focus:ring focus:border-blue-500 "
+                required
+                className="w-3/4 bg-reginald-gray focus:cursor-text focus:outline-none"
               ></input>
-            </formgroup>
-            <formgroup className={formGroupStyles}>
+            </div>
+            <div className={divStyles}>
               <label htmlFor="message" className={labelStyles}>
                 Message-
               </label>
@@ -121,9 +124,10 @@ const Contact = ({}) => {
                 onChange={(e) => {
                   setMessage(e.target.value);
                 }}
-                className="w-3/4 h-16 bg-transparent focus:cursor-text focus:outline-none focus:ring focus:border-blue-500 "
+                required
+                className="w-3/4 h-16 bg-reginald-gray focus:outline-none "
               />
-            </formgroup>
+            </div>
             <button
               type="submit"
               onClick={(e) => {
@@ -145,7 +149,7 @@ const Contact = ({}) => {
           setLoaderDidRun={setLoaderDidRun}
         />
       </motion.main>
-    </div>
+    </>
   );
 };
 

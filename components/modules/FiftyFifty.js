@@ -11,7 +11,7 @@ const FiftyFifty = ({ data }) => {
           modules.map((module, key) => (
             <>
               {module._type === "artwork" && (
-                <div className="w-full md:w-half-spaced flex justify-center flex-col align-center md:px-0 pb-4 md:pb-0">
+                <div className="w-full md:w-half-spaced flex justify-start flex-col align-center md:px-0 pb-4 md:pb-0">
                   <img
                     src={module.image.asset.url}
                     className="mb-2 md:mb-2 md:first:pl-0 md:pl-4 aspect-3/2 "

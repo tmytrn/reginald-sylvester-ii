@@ -13,35 +13,29 @@ import Accordion from "components/Accordion";
 import MyLayout from "components/Layout";
 import { AnimatePresence, motion } from "framer-motion";
 import LoaderContext from "components/LoaderContext";
-
+import { groq } from "next-sanity";
+import client, {
+  getClient,
+  usePreviewSubscription,
+  PortableText,
+} from "@lib/sanity";
 const fetcher = (query) => {
   return getPostData(query);
 };
 
-function Home({ categories, preview }) {
+function Home({ categories, bio, cv, preview }) {
   const [currentPost, setCurrentPost] = useState();
-  const [showPost, setShowPost] = useState(false);
-  // const { data, isValidating, error } = useSWR(`${currentPost}`, fetcher);
-  const [loaderDidRun, setLoaderDidRun] = useContext(LoaderContext);
+  const { loaderDidRun, showPost, setShowPost } = useContext(LoaderContext);
   const router = useRouter();
 
-  // const { data: posts } = usePreviewSubscription(categories?.query, {
-  //   initialData: categories,
-  //   enabled: preview || router.query.preview !== undefined,
-  // });
-
-  // useEffect(() => {
-  //   Router.push({
-  //     pathname: entries[0].slug.current,
-  //   });
-  // }, []);
-
   const mainVariants = {
-    initial: { opacity: 1 },
+    initial: { opacity: 0 },
     done: { opacity: 1 },
     animate: {
       opacity: [0, 1],
+      y: 0,
     },
+    exit: { opacity: 0, y: -100 },
   };
 
   return (
@@ -52,22 +46,12 @@ function Home({ categories, preview }) {
         <link rel="shortcut icon" href="/images/favicon.ico" />
       </Head>
       <AnimatePresence>
-        <Header
-          isIndex={true}
-          // data={data ? true : false}
-          setShowPost={setShowPost}
-          showPost={showPost}
-          loaderDidRun={loaderDidRun}
-          setLoaderDidRun={setLoaderDidRun}
-        />
         <motion.main
           className={`flex flex-col md:flex-row h-screen ${
             showPost ? "z-30" : "z-30"
           }`}
           variants={mainVariants}
-          initial={loaderDidRun ? "done" : "initial"}
-          animate={loaderDidRun ? "done" : "animate"}
-          transition={{ ease: "easeOut", delay: 3, duration: 1.5 }}
+          exit="exit"
         >
           <div
             className={`flex-custom1 md:h-0 relative w-full md:w-1/2 ${
@@ -75,17 +59,43 @@ function Home({ categories, preview }) {
             }`}
           >
             <div className="left-side relative md:fixed top-0 left-0  flex-custom1 overflow-y-auto w-full md:w-1/2 max-h-screen ml-0 mr-auto">
-              <div className="px-4 md:px-4 pt-24 md:pt-32">
+              <div className="px-4 md:px-4 pt-24 md:pt-24">
+                <div className="w-full flex justify-start font-bold">
+                  <a
+                    className={`pr-4 cursor-pointer ${
+                      currentPost == cv && showPost ? "underline" : ""
+                    }`}
+                    onClick={() => {
+                      console.log("cv ", cv);
+                      setCurrentPost(cv);
+                      setShowPost(true);
+                    }}
+                  >
+                    CV
+                  </a>
+                  <a
+                    className={`cursor-pointer ${
+                      currentPost == bio && showPost ? "underline" : ""
+                    }`}
+                    onClick={() => {
+                      console.log("bio ", bio);
+                      setCurrentPost(bio);
+                      setShowPost(true);
+                    }}
+                  >
+                    BIO
+                  </a>
+                </div>
                 {categories &&
                   categories.map((category, key) => (
                     <Accordion title={category.name} key={category.id}>
                       {category.posts?.map((post, key) => (
                         <a
-                          className={` cursor-pointer flex justify-between uppercase text-sm ${
-                            currentPost?.slug.current == post.slug.current &&
+                          className={` cursor-pointer flex justify-between uppercase text-sm border-b-2 border-black ${
+                            currentPost?.slug?.current == post.slug.current &&
                             showPost
-                              ? "text-regi-red font-bold pt-[2px]"
-                              : "font-normal pt-[6px] mb-[-3px]"
+                              ? "text-regi-red font-bold pt-[8px] pb-[4px]"
+                              : "font-normal pt-[12px] mb-[-3px]"
                           }`}
                           key={post.slug.current}
                           onClick={() => {
@@ -122,14 +132,24 @@ function Home({ categories, preview }) {
   );
 }
 
+const aboutQuery = groq`
+*[_type == "siteconfig"]{
+bio,
+cv,
+}
+`;
+
 export async function getStaticProps({ params, preview = false }) {
   const result = await getAllCategories();
+  const data = await getClient(preview).fetch(aboutQuery);
   const { categories } = result[0];
 
   return {
     props: {
       categories: categories,
-      // page: "index",
+      bio: data[0].bio,
+      cv: data[0].cv,
+      page: "index",
       preview,
     },
     revalidate: 10,

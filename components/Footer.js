@@ -13,13 +13,12 @@ const Footer = ({ activePage, loaderDidRun }) => {
       variants={footerVariants}
       initial={loaderDidRun ? "done" : "initial"}
       animate={loaderDidRun ? "done" : "animate"}
-      transition={{ ease: "easeOut", delay: 3, duration: 1 }}
       className="bg-reginald-gray md:bg-transparent w-full fixed left-0 bottom-0 md:left-auto md:right-0 mt-auto mb-0 justify-end px-4 pt-4 z-40"
     >
       <div className="flex flex-col">
         <Link href="/">
           <a
-            className={`block sm:hidden text-xl md:text-3xl font-sans font-medium uppercase inline-block ${
+            className={`block sm:hidden text-lg md:text-xl font-sans font-medium uppercase inline-block hover:text-regi-red ${
               activePage === "Index" ? "text-regi-red" : ""
             }`}
           >
@@ -28,7 +27,7 @@ const Footer = ({ activePage, loaderDidRun }) => {
         </Link>
         <Link href="/contact">
           <a
-            className={` text-xl md:text-3xl font-sans font-medium uppercase text-left md:text-right z-50 inline-block ${
+            className={` text-lg md:text-xl font-sans font-medium uppercase text-left md:text-right z-50 inline-block hover:text-regi-red ${
               activePage === "Contact" ? "text-regi-red" : ""
             }`}
           >
