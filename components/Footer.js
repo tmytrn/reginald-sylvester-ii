@@ -6,6 +6,9 @@ const Footer = ({ activePage, loaderDidRun }) => {
     done: { opacity: 1 },
     animate: {
       opacity: [0, 1],
+      transition: {
+        duration: 1,
+      },
     },
   };
   return (

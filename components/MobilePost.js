@@ -19,7 +19,7 @@ const MobilePost = ({ data }) => {
                   {moment(data?.date).year()}
                 </h3>
                 {data.modules.map((module, key) => (
-                  <Module key={key} module={module} />
+                  <Module key={"mobile-module" + key} module={module} />
                 ))}
               </>
             ) : (

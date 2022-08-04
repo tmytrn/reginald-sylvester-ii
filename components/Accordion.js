@@ -27,7 +27,7 @@ const Accordion = (props) => {
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.section
-            key="content"
+            key={props.key}
             initial="collapsed"
             animate="open"
             exit="collapsed"

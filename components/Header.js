@@ -5,13 +5,6 @@ import { useContext } from "react";
 import LoaderContext from "components/LoaderContext";
 const Header = ({ page, data }) => {
   const { showPost, setShowPost, loaderDidRun } = useContext(LoaderContext);
-  const variants = {
-    initial: { y: "calc(50%-72px)" },
-    done: { y: "0%" },
-    animate: {
-      y: ["50%", "0%"],
-    },
-  };
 
   const indexVariants = {
     initial: { opacity: 0 },
@@ -28,20 +21,18 @@ const Header = ({ page, data }) => {
       }`}
     >
       <div className="flex justify-between w-full">
-        <Link href="/about">
-          <a
-            className={`cursor-pointer hover:text-regi-red ${
-              page == "about" ? "text-regi-red" : ""
-            }`}
-          >
-            <h1 className="text-lg md:text-xl uppercase font-sans font-medium">
-              Reginald Sylvester II
-            </h1>
-            <p className="text-lg md:text-xl font-sans font-medium inline-block">
-              B. 1987.
-            </p>
-          </a>
-        </Link>
+        <div
+          className={`cursor-pointer hover:text-regi-red ${
+            page == "about" ? "text-regi-red" : ""
+          }`}
+        >
+          <h1 className="text-lg md:text-xl uppercase font-sans font-medium">
+            Reginald Sylvester II
+          </h1>
+          <p className="text-lg md:text-xl font-sans font-medium inline-block">
+            B. 1987.
+          </p>
+        </div>
         <a
           className={`md:hidden ${
             showPost && page == "index" ? "block" : "hidden"
@@ -56,9 +47,9 @@ const Header = ({ page, data }) => {
       <Link href="/">
         <motion.a
           variants={indexVariants}
-          initial={loaderDidRun ? "done" : "initial"}
-          animate={loaderDidRun ? "done" : "animate"}
-          transition={{ delay: 4 }}
+          initial="initial"
+          animate="animate"
+          transition={{ delay: 2.25, duration: 1 }}
           className={`text-lg md:text-xl cursor-pointer hidden md:block font-sans font-medium uppercase hover:text-regi-red ${
             page == "index" ? "text-regi-red" : ""
           }`}

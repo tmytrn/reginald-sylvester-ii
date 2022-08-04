@@ -8,10 +8,11 @@ import TextareaAutosize from "react-textarea-autosize";
 import LoaderContext from "components/LoaderContext";
 import MyLayout from "components/Layout";
 import { motion } from "framer-motion";
+import { getMetaData } from "data";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-const Contact = ({}) => {
+const Contact = ({ metaData }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
@@ -20,7 +21,7 @@ const Contact = ({}) => {
   const [mailMessage, setMailMessage] = useState("");
   const [loaderDidRun, setLoaderDidRun] = useContext(LoaderContext);
 
-  const labelStyles = "font-bold uppercase";
+  const labelStyles = "font-bold uppercase pr-2";
   const divStyles =
     "w-full flex justify-between border-b-2 border-black mb-2 text-black";
 
@@ -63,7 +64,10 @@ const Contact = ({}) => {
       <Head>
         <title>Contact | REGINALD SYLVESTER II</title>
         <meta name="description" content="Contact us" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="shortcut icon" href="/images/RSII_favicon.png" />
+        <meta property="og:title" content={metaData.title} key="title" />
+        <meta property="og:description" content={metaData.description} />
+        <meta property="og:image" content={metaData.previewImage.asset.url} />
       </Head>
       <motion.main
         variants={mainVariants}
@@ -82,7 +86,7 @@ const Contact = ({}) => {
                 id="name"
                 onChange={(e) => setName(e.target.value)}
                 required
-                className="w-3/4 bg-reginald-gray focus:outline-none focus:cursor-text"
+                className="w-full bg-reginald-gray focus:outline-none focus:cursor-text"
               />
             </div>
             <div className={divStyles}>
@@ -96,7 +100,7 @@ const Contact = ({}) => {
                   setEmail(e.target.value);
                 }}
                 required
-                className="w-3/4 bg-reginald-gray focus:outline-none focus:cursor-text  focus:border-regi-red focus:ring-regi-red "
+                className="w-full bg-reginald-gray focus:outline-none focus:cursor-text  focus:border-regi-red focus:ring-regi-red "
               ></input>
             </div>
             <div className={divStyles}>
@@ -110,7 +114,7 @@ const Contact = ({}) => {
                   setSubject(e.target.value);
                 }}
                 required
-                className="w-3/4 bg-reginald-gray focus:cursor-text focus:outline-none"
+                className="w-full bg-reginald-gray focus:cursor-text focus:outline-none"
               ></input>
             </div>
             <div className={divStyles}>
@@ -125,7 +129,7 @@ const Contact = ({}) => {
                   setMessage(e.target.value);
                 }}
                 required
-                className="w-3/4 h-16 bg-reginald-gray focus:outline-none "
+                className="w-full h-16 bg-reginald-gray focus:outline-none "
               />
             </div>
             <button
@@ -152,5 +156,17 @@ const Contact = ({}) => {
     </>
   );
 };
+
+export async function getStaticProps({ params, preview = false }) {
+  const metaData = await getMetaData();
+
+  return {
+    props: {
+      metaData: metaData[0],
+      preview,
+    },
+    revalidate: 10,
+  };
+}
 
 export default Contact;

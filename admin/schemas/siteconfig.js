@@ -10,6 +10,11 @@ export default {
       title: "Site title",
     },
     {
+      name: "description",
+      type: "string",
+      title: "Site Description",
+    },
+    {
       name: "previewImage",
       type: "image",
       title: "Preview Image",

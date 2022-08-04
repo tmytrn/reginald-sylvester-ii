@@ -40,16 +40,22 @@ const MyLayout = ({ page, children }) => {
   };
 
   return (
-    <AnimatePresence exitBeforeEnter>
-      <LoaderContext.Provider
-        value={{
-          loaderDidRun: loaderDidRun,
-          showPost: showPost,
-          setShowPost: setShowPost,
-        }}
-      >
-        <motion.div variants={variants} animate="animate" initial="initial">
+    <LoaderContext.Provider
+      value={{
+        loaderDidRun: loaderDidRun,
+        showPost: showPost,
+        setShowPost: setShowPost,
+      }}
+    >
+      <AnimatePresence exitBeforeEnter>
+        <motion.div
+          variants={variants}
+          animate="animate"
+          initial="initial"
+          key="layout"
+        >
           <motion.div
+            key="header"
             variants={loaderVariants}
             className={`fixed top-0 left-0 w-full flex justify-between items-start px-4 sm:px-4 lg:px-4 pt-8 z-40 ${
               loaderDidRun ? "h-auto" : "bg-reginald-gray h-full"
@@ -60,10 +66,12 @@ const MyLayout = ({ page, children }) => {
           >
             <Header page={page} />
           </motion.div>
-          <motion.div variants={mainVariants}>{children}</motion.div>
+          <motion.div key="main" variants={mainVariants}>
+            {children}
+          </motion.div>
         </motion.div>
-      </LoaderContext.Provider>
-    </AnimatePresence>
+      </AnimatePresence>
+    </LoaderContext.Provider>
   );
 };
 

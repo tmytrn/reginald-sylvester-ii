@@ -25,7 +25,7 @@ const About = ({ data }) => {
           Born in Jacksonville, North Carolina 1987
           Lives and works in Brooklyn, New York"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="shortcut icon" href="/images/RSII_favicon.png" />
       </Head>
 
       <div className="w-full md:w-1/2 px-4 pt-24 md:pt-32 flex flex-col h-screen">

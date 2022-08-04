@@ -9,7 +9,7 @@ const FiftyFifty = ({ data }) => {
       <div className="w-full flex flex-col md:flex-row justify-between border-b-2 border-black ">
         {modules ? (
           modules.map((module, key) => (
-            <>
+            <div key={"fifityFifty " + key}>
               {module._type === "artwork" && (
                 <div className="w-full md:w-half-spaced flex justify-start flex-col align-center md:px-0 pb-4 md:pb-0">
                   <img
@@ -26,7 +26,7 @@ const FiftyFifty = ({ data }) => {
                   <PortableText value={module.blocks} />
                 </div>
               )}
-            </>
+            </div>
           ))
         ) : (
           <div>no images</div>

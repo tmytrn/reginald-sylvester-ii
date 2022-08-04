@@ -47,11 +47,13 @@ export const postQuery = `
 export const categoryQuery = `
 *[_type == "siteconfig"]{
   categories[]->{
+    _id,
     name,
       "posts": *[_type=="post" && categories->name==^.name]{    title,
         slug,
         location,
         date,
+        _id,
         'modules' : modules[]{
           _type == 'fiftyFifty' => {
           _type,
@@ -91,5 +93,20 @@ export const categoryQuery = `
            }
     }}
   }
+}
+`;
+
+export const metaData = `
+*[_type == "siteconfig"]{
+  title,
+  description,
+  previewImage{asset->{url}},
+}
+`;
+
+export const aboutQuery = `
+*[_type == "siteconfig"]{
+bio,
+cv,
 }
 `;

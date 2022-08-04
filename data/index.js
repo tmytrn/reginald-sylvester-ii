@@ -8,7 +8,16 @@ export const getAllCategories = async () => {
 
 export const getPostData = async (slug) => {
   const data = await getClient().fetch(queries.postQuery, { slug: slug });
-  console.log(typeof data);
+  return data;
+};
+
+export const getMetaData = async () => {
+  const data = await getClient().fetch(queries.metaData);
+  return data;
+};
+
+export const getAboutData = async () => {
+  const data = await getClient().fetch(queries.aboutQuery);
   return data;
 };
 

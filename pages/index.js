@@ -3,27 +3,15 @@ import Image from "next/image";
 import Post from "components/Post";
 import { useContext, useState } from "react";
 import { Router, useRouter } from "next/router";
-import Header from "components/Header";
 import Footer from "components/Footer";
 import MobilePost from "components/MobilePost";
 import moment from "moment";
-import useSWR from "swr";
-import { getAllCategories, getPostData } from "data";
+import { getAboutData, getAllCategories, getMetaData, getPostData } from "data";
 import Accordion from "components/Accordion";
-import MyLayout from "components/Layout";
 import { AnimatePresence, motion } from "framer-motion";
 import LoaderContext from "components/LoaderContext";
-import { groq } from "next-sanity";
-import client, {
-  getClient,
-  usePreviewSubscription,
-  PortableText,
-} from "@lib/sanity";
-const fetcher = (query) => {
-  return getPostData(query);
-};
 
-function Home({ categories, bio, cv, preview }) {
+function Home({ metaData, categories, bio, cv, preview }) {
   const [currentPost, setCurrentPost] = useState();
   const { loaderDidRun, showPost, setShowPost } = useContext(LoaderContext);
   const router = useRouter();
@@ -34,24 +22,31 @@ function Home({ categories, bio, cv, preview }) {
     animate: {
       opacity: [0, 1],
       y: 0,
+      transition: {
+        duration: 1,
+      },
     },
     exit: { opacity: 0, y: -100 },
   };
 
   return (
-    <>
+    <div>
       <Head>
         <title>REGINALD SYLVESTER II</title>
         <meta name="description" content="B.1987" />
-        <link rel="shortcut icon" href="/images/favicon.ico" />
+        <link rel="shortcut icon" href="/images/RSII_favicon.png" />
+        <meta property="og:title" content={metaData.title} key="title" />
+        <meta property="og:description" content={metaData.description} />
+        <meta property="og:image" content={metaData.previewImage.asset.url} />
       </Head>
-      <AnimatePresence>
+      <AnimatePresence exitBeforeEnter>
         <motion.main
           className={`flex flex-col md:flex-row h-screen ${
             showPost ? "z-30" : "z-30"
           }`}
           variants={mainVariants}
           exit="exit"
+          key="main"
         >
           <div
             className={`flex-custom1 md:h-0 relative w-full md:w-1/2 ${
@@ -88,7 +83,10 @@ function Home({ categories, bio, cv, preview }) {
                 </div>
                 {categories &&
                   categories.map((category, key) => (
-                    <Accordion title={category.name} key={category.id}>
+                    <Accordion
+                      title={category.name}
+                      key={"category-" + category._id}
+                    >
                       {category.posts?.map((post, key) => (
                         <a
                           className={` cursor-pointer flex justify-between uppercase text-sm border-b-2 border-black ${
@@ -97,7 +95,7 @@ function Home({ categories, bio, cv, preview }) {
                               ? "text-regi-red font-bold pt-[8px] pb-[4px]"
                               : "font-normal pt-[12px] mb-[-3px]"
                           }`}
-                          key={post.slug.current}
+                          key={"post-" + post._id}
                           onClick={() => {
                             setCurrentPost(post);
                             setShowPost(true);
@@ -128,27 +126,23 @@ function Home({ categories, bio, cv, preview }) {
         </motion.main>
         <Footer activePage={"Index"} loaderDidRun={loaderDidRun} />
       </AnimatePresence>
-    </>
+    </div>
   );
 }
 
-const aboutQuery = groq`
-*[_type == "siteconfig"]{
-bio,
-cv,
-}
-`;
-
 export async function getStaticProps({ params, preview = false }) {
   const result = await getAllCategories();
-  const data = await getClient(preview).fetch(aboutQuery);
+  const about = await getAboutData();
+  const metaData = await getMetaData();
   const { categories } = result[0];
+  const { bio, cv } = about[0];
 
   return {
     props: {
       categories: categories,
-      bio: data[0].bio,
-      cv: data[0].cv,
+      bio: bio,
+      cv: cv,
+      metaData: metaData[0],
       page: "index",
       preview,
     },
