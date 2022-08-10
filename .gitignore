@@ -3,6 +3,7 @@
 node_modules/
 logs/
 package-lock.json
+.next
 .next/
 .next/*
 .swc

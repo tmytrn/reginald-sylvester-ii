@@ -8,7 +8,7 @@ const MobilePost = ({ data }) => {
     <div className="fixed bg-reginald-gray md:hidden  flex-col ml-auto mr-0 w-full overflow-auto h-full top-0 left-0 z-30 pb-24">
       <div className="px-4 pt-32 md:pt-32">
         {data && (
-          <div>
+          <>
             {data.modules ? (
               <>
                 <h3 className="pt-[4px] text-md uppercase font-bold pb-4">
@@ -25,7 +25,7 @@ const MobilePost = ({ data }) => {
             ) : (
               <PortableText value={data} />
             )}
-          </div>
+          </>
         )}
       </div>
     </div>
