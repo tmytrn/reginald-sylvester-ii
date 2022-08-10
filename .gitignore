@@ -2,10 +2,10 @@
 .env.local
 node_modules/
 logs/
-package-lock.json
 .next
 .next/
 .next/*
 .swc
 .DS_Store
+package-lock.json
 
