@@ -2,7 +2,8 @@ import LeftArrow from "svg/LeftArrow";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useContext } from "react";
-import LoaderContext from "components/LoaderContext";
+import LoaderContext from "./LoaderContext";
+import AnimatedText from "./AnimatedText";
 import Typical from "react-typical";
 const Header = ({ page, data }) => {
   const { showPost, setShowPost, loaderDidRun } = useContext(LoaderContext);
@@ -30,11 +31,13 @@ const Header = ({ page, data }) => {
           <h1 className="text-lg md:text-xl uppercase font-sans font-medium">
             Reginald Sylvester II
           </h1>
-          <Typical
+
+          <AnimatedText text={"B. 1987."} />
+          {/* <Typical
             steps={[3000, "B. 1987.", 1000]}
             wrapper="p"
             className="text-lg md:text-xl font-sans font-medium inline-block remove-cursor"
-          />
+          /> */}
         </div>
         <a
           className={`md:hidden ${
