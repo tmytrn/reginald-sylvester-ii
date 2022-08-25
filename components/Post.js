@@ -4,9 +4,9 @@ import { PortableText } from "@portabletext/react";
 
 const Post = ({ data }) => {
   return data ? (
-    <div className="hidden md:flex flex-col ml-auto mr-0 relative w-full overflow-visible ">
+    <div className="hidden md:flex flex-col ml-auto mr-0 relative w-full overflow-visible pt-24 mb-12">
       {data.modules ? (
-        <div className="px-4  pt-32 mb-12">
+        <div className="px-4">
           <h3 className="pt-[4px] text-2xl uppercase font-bold pb-4">
             {data?.title}
             <br />

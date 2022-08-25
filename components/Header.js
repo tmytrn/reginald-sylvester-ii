@@ -3,6 +3,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useContext } from "react";
 import LoaderContext from "components/LoaderContext";
+import Typical from "react-typical";
 const Header = ({ page, data }) => {
   const { showPost, setShowPost, loaderDidRun } = useContext(LoaderContext);
 
@@ -29,9 +30,11 @@ const Header = ({ page, data }) => {
           <h1 className="text-lg md:text-xl uppercase font-sans font-medium">
             Reginald Sylvester II
           </h1>
-          <p className="text-lg md:text-xl font-sans font-medium inline-block">
-            B. 1987.
-          </p>
+          <Typical
+            steps={[3000, "B. 1987.", 1000]}
+            wrapper="p"
+            className="text-lg md:text-xl font-sans font-medium inline-block remove-cursor"
+          />
         </div>
         <a
           className={`md:hidden ${
@@ -49,7 +52,7 @@ const Header = ({ page, data }) => {
           variants={indexVariants}
           initial="initial"
           animate="animate"
-          transition={{ delay: 2.25, duration: 1 }}
+          transition={{ delay: 4.25, duration: 1 }}
           className={`text-lg md:text-xl cursor-pointer hidden md:block font-sans font-medium uppercase hover:text-regi-red ${
             page == "index" ? "text-regi-red" : ""
           }`}

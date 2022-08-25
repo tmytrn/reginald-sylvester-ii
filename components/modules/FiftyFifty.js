@@ -24,9 +24,9 @@ const FiftyFifty = ({ data }) => {
               </div>
             )}
             {module._type === "blockText" && (
-              <div key={key} className="w-full md:w-half-spaced text-base">
+              
                 <PortableText value={module.blocks} />
-              </div>
+              
             )}
           </div>
         ))

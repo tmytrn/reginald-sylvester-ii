@@ -39,3 +39,7 @@ input{
 textarea{ 
   font-family: 'Times New Roman', Times, serif;
 }
+.remove-cursor::after {
+  content: "" !important;
+  animation: none !important;
+}

@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Post from "components/Post";
+import Dot from "svg/Dot";
 import { useContext, useState } from "react";
 import { Router, useRouter } from "next/router";
 import Footer from "components/Footer";
@@ -10,9 +11,12 @@ import { getAboutData, getAllCategories, getMetaData, getPostData } from "data";
 import Accordion from "components/Accordion";
 import { AnimatePresence, motion } from "framer-motion";
 import LoaderContext from "components/LoaderContext";
+import Typical from "react-typical";
 
 function Home({ metaData, categories, bio, cv, preview }) {
   const [currentPost, setCurrentPost] = useState();
+  const [isCVActive, setIsCVActive] = useState();
+  const [isBioActive, setIsBioActive] = useState();
   const { loaderDidRun, showPost, setShowPost } = useContext(LoaderContext);
   const router = useRouter();
 
@@ -55,30 +59,48 @@ function Home({ metaData, categories, bio, cv, preview }) {
           >
             <div className="left-side relative md:fixed top-0 left-0  flex-custom1 overflow-y-auto w-full md:w-1/2 max-h-screen ml-0 mr-auto">
               <div className="px-4 md:px-4 pt-24 md:pt-24">
-                <div className="w-full flex justify-start font-bold">
+                <div
+                  className="pb-[3px]"
+                  onClick={() => {
+                    setShowPost(true);
+                    setCurrentPost(cv);
+                    setIsCVActive(true);
+                    setIsBioActive(false);
+                  }}
+                >
                   <a
-                    className={`pr-4 cursor-pointer ${
-                      currentPost == cv && showPost ? "underline" : ""
+                    className={`flex justify-between border-b-2 border-black mt-2 align-middle cursor-pointer text-sm font-bold uppercase ${
+                      isCVActive ? "text-regi-red border-regi-red" : " "
                     }`}
-                    onClick={() => {
-                      console.log("cv ", cv);
-                      setCurrentPost(cv);
-                      setShowPost(true);
-                    }}
                   >
-                    CV
+                    {"CV"}
+                    <span
+                      className={`w-3 h-3 text-center my-auto isOpen ? "fill-regi-red border-regi-red" : " "`}
+                    >
+                      <Dot color={isCVActive ? "#540d08" : "#000"} />
+                    </span>
                   </a>
+                </div>
+                <div
+                  className="pb-[3px]"
+                  onClick={() => {
+                    setShowPost(true);
+                    setCurrentPost(bio);
+                    setIsBioActive(true);
+                    setIsCVActive(false);
+                  }}
+                >
                   <a
-                    className={`cursor-pointer ${
-                      currentPost == bio && showPost ? "underline" : ""
+                    className={`flex justify-between border-b-2 border-black mt-2 align-middle cursor-pointer text-sm font-bold uppercase ${
+                      isBioActive ? "text-regi-red border-regi-red" : " "
                     }`}
-                    onClick={() => {
-                      console.log("bio ", bio);
-                      setCurrentPost(bio);
-                      setShowPost(true);
-                    }}
                   >
-                    BIO
+                    {"BIO"}
+                    <span
+                      className={`w-3 h-3 text-center my-auto isOpen ? "fill-regi-red border-regi-red" : " "`}
+                    >
+                      <Dot color={isBioActive ? "#540d08" : "#000"} />
+                    </span>
                   </a>
                 </div>
                 {categories &&
@@ -99,6 +121,8 @@ function Home({ metaData, categories, bio, cv, preview }) {
                           onClick={() => {
                             setCurrentPost(post);
                             setShowPost(true);
+                            setIsCVActive(false);
+                            setIsBioActive(false);
                           }}
                           data-category={post.slug.current}
                         >
