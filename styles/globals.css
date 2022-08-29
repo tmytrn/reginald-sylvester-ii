@@ -41,5 +41,5 @@ textarea{
 }
 .pulse-cursor::after{
   content: "|";
-  animation: styles_blink__2CKyC 1s infinite step-start;
+  animation: styles_blink__2CKyC .5s infinite step-start;
 }
