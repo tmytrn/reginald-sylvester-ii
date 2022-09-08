@@ -14,7 +14,8 @@ export const postQuery = `
           date,
           etc,
           image{
-            asset->{url}
+            asset->{url},
+            _ref
           }
         },
         _type =='blockText' => {

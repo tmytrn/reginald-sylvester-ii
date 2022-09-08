@@ -43,3 +43,6 @@ textarea{
   content: "|";
   animation: styles_blink__2CKyC .5s infinite step-start;
 }
+.__react_modal_image__header{
+  background-color: rgba(0, 0, 0, 0) !important;
+}

@@ -1,5 +1,6 @@
 import moment from "moment";
 import { PortableText } from "@portabletext/react";
+import Image from "../Image";
 
 const FiftyFifty = ({ data }) => {
   console.log("fiftyFifty: ", data);
@@ -14,9 +15,11 @@ const FiftyFifty = ({ data }) => {
                 key={key}
                 className="w-full flex justify-start flex-col align-center px-4 md:px-0 pb-4 md:pb-0"
               >
-                <img
-                  src={module.image.asset.url}
-                  className="mb-2 md:mb-2 md:first:pl-0 md:pl-4 aspect-3/2 "
+                <Image
+                  styles={"mb-2 md:mb-2 md:first:pl-0 md:pl-4 w-full"}
+                  src={module.image?.asset.url}
+                  width={720}
+                  height={1080}
                 />
                 <div className="">{`${module.title}, ${moment(
                   module.date
@@ -24,9 +27,7 @@ const FiftyFifty = ({ data }) => {
               </div>
             )}
             {module._type === "blockText" && (
-              
-                <PortableText value={module.blocks} />
-              
+              <PortableText value={module.blocks} />
             )}
           </div>
         ))

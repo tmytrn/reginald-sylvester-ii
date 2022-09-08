@@ -1,4 +1,5 @@
 import { PortableText } from "@portabletext/react";
+import Image from "../Image";
 
 const FullWidth = ({ data }) => {
   if (!data.modules) {
@@ -11,7 +12,9 @@ const FullWidth = ({ data }) => {
     <div className="mb-4">
       {type === "artwork" && (
         <div className="w-full font-normal text-base aspect-video">
-          {type === "artwork" && <img src={data.image.asset.url} />}
+          {type === "artwork" && (
+            <Image src={data.image?.asset.url} width={1080} />
+          )}
           {type === "blockText" && (
             <PortableText value={data.blocks}></PortableText>
           )}

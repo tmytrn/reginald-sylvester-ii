@@ -19,7 +19,7 @@ const Header = ({ page, data }) => {
   return (
     <nav
       className={`md:bg-transparent fixed top-0 left-0 w-full  flex justify-between items-start px-4 sm:px-4 lg:px-4 pt-8 z-40 ${
-        loaderDidRun ? "bg-reginald-gray h-auto" : "bg-transparent h-full"
+        loaderDidRun ? " h-auto" : "bg-transparent h-full"
       }`}
     >
       <div className="flex justify-between w-full">

@@ -103,8 +103,39 @@ function Home({ metaData, categories, bio, cv, preview }) {
                     </span>
                   </a>
                 </div>
-                {categories &&
-                  categories.map((category, key) => (
+                {categories?.map((category, key) =>
+                  category.posts?.length < 2 ? (
+                    <a
+                      className={`mb-2 flex justify-between border-b-2 border-black align-middle cursor-pointer text-sm font-bold uppercase pb-[3px] ${
+                        currentPost?.slug?.current ==
+                          category.posts[0].slug.current && showPost
+                          ? "text-regi-red font-bold pt-[8px] pb-[4px] mb-[0px] border-regi-red"
+                          : "pt-[8px] mb-[0px]"
+                      }`}
+                      key={"post-" + category.posts[0]._id}
+                      onClick={() => {
+                        setCurrentPost(category.posts[0]);
+                        setShowPost(true);
+                        setIsCVActive(false);
+                        setIsBioActive(false);
+                      }}
+                      data-category={category.posts[0].slug.current}
+                    >
+                      {category.posts[0].title}
+                      <span
+                        className={`w-3 h-3 text-center my-auto isOpen ? "fill-regi-red border-regi-red" : " "`}
+                      >
+                        <Dot
+                          color={
+                            currentPost?.slug?.current ==
+                              category.posts[0].slug.current && showPost
+                              ? "#540d08"
+                              : "#000"
+                          }
+                        />
+                      </span>
+                    </a>
+                  ) : (
                     <Accordion
                       title={category.name}
                       key={"category-" + category._id}
@@ -125,6 +156,7 @@ function Home({ metaData, categories, bio, cv, preview }) {
                             setIsBioActive(false);
                           }}
                           data-category={post.slug.current}
+                          key={key}
                         >
                           <span className="align-baseline basis-12/12 md:basis-6/12">
                             {post.title}
@@ -138,7 +170,8 @@ function Home({ metaData, categories, bio, cv, preview }) {
                         </a>
                       ))}
                     </Accordion>
-                  ))}
+                  )
+                )}
               </div>
             </div>
           </div>
