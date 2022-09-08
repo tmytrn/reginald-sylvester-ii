@@ -21,7 +21,7 @@ const Image = ({ styles, src, width, height }) => {
         >
           <img
             src={src}
-            className="m-center w-100 max-h- max-w-sm sm:max-w-md md:max-w-3xl lg:max-w-5xl"
+            className="m-center w-100 max-h-[90%] max-w-sm sm:max-w-md md:max-w-3xl lg:max-w-4xl"
           ></img>
         </div>
       )}
