@@ -1,4 +1,5 @@
 import { BsCardImage } from "react-icons/bs";
+import React from "react";
 
 export default {
   name: "artwork",
@@ -41,6 +42,18 @@ export default {
     select: {
       title: "title",
       subtitle: "date",
+      imageUrl: "image.asset.url",
+    },
+    prepare(selection) {
+      const { title, subtitle, imageUrl } = selection;
+      return {
+        title: title,
+        subtitle: subtitle,
+
+        // `media` takes a function, string or React element
+        // Remember to import React from 'react' if you are rendering React components like below
+        media: <img src={`${imageUrl}?w=64&h=64`} alt={"image of: " + title} />,
+      };
     },
   },
 };

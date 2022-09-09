@@ -18,26 +18,30 @@ const Footer = ({ activePage, loaderDidRun }) => {
       animate={loaderDidRun ? "done" : "animate"}
       className=" md:bg-transparent w-full fixed left-0 bottom-0 md:left-auto md:right-0 mt-auto mb-0 justify-end px-4 pt-4 z-40"
     >
-      <div className="flex flex-col">
-        <Link href="/">
-          <a
-            className={`block sm:hidden text-lg md:text-xl font-sans font-medium uppercase inline-block hover:text-regi-red ${
-              activePage === "Index" ? "text-regi-red" : ""
-            }`}
-          >
-            Index
-          </a>
-        </Link>
-        <Link href="/contact">
-          <a
-            className={` text-lg md:text-xl font-sans font-medium uppercase text-left md:text-right z-50 inline-block hover:text-regi-red ${
-              activePage === "Contact" ? "text-regi-red" : ""
-            }`}
-          >
-            Contact
-          </a>
-        </Link>
-      </div>
+      <ul className="flex flex-col justify-end">
+        <li>
+          <Link href="/">
+            <a
+              className={` sm:hidden text-lg md:text-xl font-sans font-medium uppercase inline-block hover:text-regi-red ${
+                activePage === "Index" ? "text-regi-red" : ""
+              }`}
+            >
+              Index
+            </a>
+          </Link>
+        </li>
+        <li className="justify-end md:text-right">
+          <Link href="/contact">
+            <a
+              className={` text-lg md:text-xl font-sans font-medium uppercase text-left z-50 inline-block hover:text-regi-red ${
+                activePage === "Contact" ? "text-regi-red" : ""
+              }`}
+            >
+              Contact
+            </a>
+          </Link>
+        </li>
+      </ul>
     </motion.div>
   );
 };

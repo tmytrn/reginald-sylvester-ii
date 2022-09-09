@@ -6,7 +6,7 @@ const FiftyFifty = ({ data }) => {
   console.log("fiftyFifty: ", data);
   const { modules } = data;
   return (
-    <div className="w-full flex flex-col md:flex-row justify-between ml-0 mt-2 md:mt-0 md:ml-0 mb-4 border-b-2 border-black">
+    <div className="w-full flex flex-col md:flex-row justify-between ml-0 mt-2 md:mt-0 md:ml-0 mb-4 md:border-b-2 md:border-black">
       {modules ? (
         modules.map((module, key) => (
           <div className="w-full md:w-half-spaced flex flex-col">
