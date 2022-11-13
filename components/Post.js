@@ -22,6 +22,7 @@ const Post = ({ data }) => {
   };
 
   useEffect(() => {
+    if (!data.modules) return;
     let index = 0;
     for (let i = 0; i < data.modules.length; i++) {
       if (data.modules[i]._type == "fullWidth") {
@@ -69,7 +70,7 @@ const Post = ({ data }) => {
             ))}
           </div>
         ) : (
-          <div className="px-4 pt-[6px]">
+          <div className="px-4 pt-[8px]">
             <PortableText value={data} />
           </div>
         )}

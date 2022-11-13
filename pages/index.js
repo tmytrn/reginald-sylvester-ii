@@ -43,7 +43,7 @@ function Home({ metaData, categories, bio, cv, preview }) {
         <meta property="og:description" content={metaData?.description} />
         <meta property="og:image" content={metaData?.previewImage.asset.url} />
       </Head>
-      <AnimatePresence exitBeforeEnter>
+      <AnimatePresence>
         <motion.main
           className={`flex flex-col md:flex-row h-screen ${
             showPost ? "z-30" : "z-30"
