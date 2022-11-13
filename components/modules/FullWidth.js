@@ -1,27 +1,47 @@
 import { PortableText } from "@portabletext/react";
+import { useState } from "react";
 import Image from "../Image";
 
-const FullWidth = ({ data }) => {
+const FullWidth = ({
+  data,
+  setShowSlider,
+  goToSlide,
+  imageIndex,
+  incrementImageIndex,
+}) => {
   if (!data.modules) {
     return null;
   }
-  console.log("fullWidth: ", data);
+
+  // console.log("fullWidth: ", data);
   const type = data.modules[0]._type;
   data = data.modules[0];
-  return (
-    <div className="mb-4">
-      {type === "artwork" && (
+  // const increment = () => {
+  //   incrementImageIndex();
+  // };
+
+  if (type === "artwork") {
+    return (
+      <div className="mb-4">
         <div className="w-full font-normal text-base aspect-video">
-          {type === "artwork" && (
-            <Image src={data.image?.asset.url} width={1080} />
-          )}
-          {type === "blockText" && (
-            <PortableText value={data.blocks}></PortableText>
-          )}
+          <Image
+            styles={"cursor-pointer"}
+            src={data.image?.asset.url}
+            width={1080}
+            setShowSlider={setShowSlider}
+            goToSlide={goToSlide}
+            imageIndex={data.carouselIndex}
+          />
         </div>
-      )}
-      {type === "blockText" && <PortableText value={data.blocks} />}
-    </div>
-  );
+      </div>
+    );
+  }
+  if (type === "blockText") {
+    return (
+      <div className="mb-4">
+        <PortableText value={data.blocks} />{" "}
+      </div>
+    );
+  }
 };
 export default FullWidth;

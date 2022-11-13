@@ -11,7 +11,7 @@ import { getAboutData, getAllCategories, getMetaData, getPostData } from "data";
 import Accordion from "components/Accordion";
 import { AnimatePresence, motion } from "framer-motion";
 import LoaderContext from "components/LoaderContext";
-import Typical from "react-typical";
+import SinglePost from "components/SinglePost";
 
 function Home({ metaData, categories, bio, cv, preview }) {
   const [currentPost, setCurrentPost] = useState();
@@ -39,9 +39,9 @@ function Home({ metaData, categories, bio, cv, preview }) {
         <title>REGINALD SYLVESTER II</title>
         <meta name="description" content="B.1987" />
         <link rel="shortcut icon" href="/images/RSII_favicon.png" />
-        <meta property="og:title" content={metaData.title} key="title" />
-        <meta property="og:description" content={metaData.description} />
-        <meta property="og:image" content={metaData.previewImage.asset.url} />
+        <meta property="og:title" content={metaData?.title} key="title" />
+        <meta property="og:description" content={metaData?.description} />
+        <meta property="og:image" content={metaData?.previewImage.asset.url} />
       </Head>
       <AnimatePresence exitBeforeEnter>
         <motion.main
@@ -59,76 +59,50 @@ function Home({ metaData, categories, bio, cv, preview }) {
           >
             <div className="left-side relative md:fixed top-0 left-0  flex-custom1 overflow-y-auto w-full md:w-1/2 max-h-screen ml-0 mr-auto">
               <div className="px-4 md:px-4 pt-24 md:pt-24">
-                <div
-                  className="pb-[3px]"
-                  onClick={() => {
-                    setShowPost(true);
-                    setCurrentPost(cv);
-                    setIsCVActive(true);
-                    setIsBioActive(false);
-                  }}
-                >
-                  <a
-                    className={`flex justify-between border-b-2 border-black mt-2 align-middle cursor-pointer text-sm font-bold uppercase ${
-                      isCVActive ? "text-regi-red border-regi-red" : " "
-                    }`}
-                  >
-                    {"CV"}
-                    <span
-                      className={`w-3 h-3 text-center my-auto isOpen ? "fill-regi-red border-regi-red" : " "`}
-                    >
-                      <Dot color={isCVActive ? "#540d08" : "#000"} />
-                    </span>
-                  </a>
-                </div>
-                <div
-                  className="pb-[3px]"
-                  onClick={() => {
-                    setShowPost(true);
-                    setCurrentPost(bio);
-                    setIsBioActive(true);
-                    setIsCVActive(false);
-                  }}
-                >
-                  <a
-                    className={`flex justify-between border-b-2 border-black mt-2 align-middle cursor-pointer text-sm font-bold uppercase ${
-                      isBioActive ? "text-regi-red border-regi-red" : " "
-                    }`}
-                  >
-                    {"BIO"}
-                    <span
-                      className={`w-3 h-3 text-center my-auto isOpen ? "fill-regi-red border-regi-red" : " "`}
-                    >
-                      <Dot color={isBioActive ? "#540d08" : "#000"} />
-                    </span>
-                  </a>
-                </div>
+                <SinglePost
+                  name={"CV"}
+                  postContent={cv}
+                  setShowPost={setShowPost}
+                  setCurrentPost={setCurrentPost}
+                  setIsCVActive={setIsCVActive}
+                  setIsBioActive={setIsBioActive}
+                  currentPost={currentPost}
+                />
+                <SinglePost
+                  name={"BIO"}
+                  postContent={bio}
+                  setShowPost={setShowPost}
+                  setCurrentPost={setCurrentPost}
+                  setIsCVActive={setIsCVActive}
+                  setIsBioActive={setIsBioActive}
+                  currentPost={currentPost}
+                />
                 {categories?.map((category, key) =>
                   category.posts?.length < 2 ? (
                     <a
                       className={`mb-2 flex justify-between border-b-2 border-black align-middle cursor-pointer text-sm font-bold uppercase pb-[3px] ${
                         currentPost?.slug?.current ==
-                          category.posts[0].slug.current && showPost
+                          category.posts[0]?.slug.current && showPost
                           ? "text-regi-red font-bold pt-[8px] pb-[4px] mb-[0px] border-regi-red"
                           : "pt-[8px] mb-[0px]"
                       }`}
-                      key={"post-" + category.posts[0]._id}
+                      key={"post-" + category.posts[0]?._id}
                       onClick={() => {
                         setCurrentPost(category.posts[0]);
                         setShowPost(true);
                         setIsCVActive(false);
                         setIsBioActive(false);
                       }}
-                      data-category={category.posts[0].slug.current}
+                      data-category={category.posts[0]?.slug.current}
                     >
-                      {category.posts[0].title}
+                      {category.posts[0]?.title}
                       <span
                         className={`w-3 h-3 text-center my-auto isOpen ? "fill-regi-red border-regi-red" : " "`}
                       >
                         <Dot
                           color={
                             currentPost?.slug?.current ==
-                              category.posts[0].slug.current && showPost
+                              category.posts[0]?.slug.current && showPost
                               ? "#540d08"
                               : "#000"
                           }

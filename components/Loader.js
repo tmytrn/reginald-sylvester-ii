@@ -13,10 +13,10 @@ export default function Loader() {
     >
       <Link href="/about">
         <a className={`cursor-pointer hover:text-regi-red`}>
-          <h1 className="text-lg md:text-xl uppercase font-sans font-medium">
+          <h1 className="text-sm md:text-md uppercase font-sans font-medium">
             Reginald Sylvester II
           </h1>
-          <p className="text-lg md:text-xl font-sans font-medium inline-block">
+          <p className="text-sm md:text-md font-sans font-medium inline-block">
             B. 1987.
           </p>
         </a>

@@ -56,7 +56,7 @@ const AnimatedText = ({ text }) => {
 
   return (
     <motion.p
-      className={`text-lg md:text-xl font-sans font-medium inline-block ${
+      className={`text-sm md:text-md font-sans font-medium inline-block ${
         isPulsing ? "pulse-cursor" : ""
       }`}
       variants={container}

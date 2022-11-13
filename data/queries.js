@@ -50,7 +50,8 @@ export const categoryQuery = `
   categories[]->{
     _id,
     name,
-      "posts": *[_type=="post" && categories->name==^.name]{    title,
+      "posts": *[_type=="post" && categories->name==^.name] | order(date asc){
+        title,
         slug,
         location,
         date,
@@ -95,6 +96,11 @@ export const categoryQuery = `
     }}
   }
 }
+`;
+
+export const carouselQuery = `
+*[_type=="post" && slug.current == $slug].modules[].modules[]->image.asset->url
+
 `;
 
 export const metaData = `

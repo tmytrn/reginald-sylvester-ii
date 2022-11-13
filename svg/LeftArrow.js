@@ -1,8 +1,8 @@
 const LeftArrow = () => {
   return (
-    <svg version="1.1" width="32pt" height="32pt" viewBox="0 0 81.7693 81.7693">
+    <svg version="1.1" width="24" height="24" viewBox="0 0 81.7693 81.7693">
       <g enableBackground="new">
-        <g id="Layer-1" data-name="Layer 1">
+        <g id="Layer-1" dataName="Layer 1">
           <clipPath id="cp0">
             <path
               transform="matrix(1,0,0,-1,0,81.7693)"

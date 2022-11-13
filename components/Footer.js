@@ -22,7 +22,7 @@ const Footer = ({ activePage, loaderDidRun }) => {
         <li>
           <Link href="/">
             <a
-              className={` sm:hidden text-lg md:text-xl font-sans font-medium uppercase inline-block hover:text-regi-red ${
+              className={` sm:hidden text-sm md:text-md font-sans font-medium uppercase inline-block hover:text-regi-red ${
                 activePage === "Index" ? "text-regi-red" : ""
               }`}
             >
@@ -33,7 +33,7 @@ const Footer = ({ activePage, loaderDidRun }) => {
         <li className="justify-end md:text-right">
           <Link href="/contact">
             <a
-              className={` text-lg md:text-xl font-sans font-medium uppercase text-left z-50 inline-block hover:text-regi-red ${
+              className={` text-sm md:text-md font-sans font-medium uppercase text-left z-50 inline-block hover:text-regi-red ${
                 activePage === "Contact" ? "text-regi-red" : ""
               }`}
             >

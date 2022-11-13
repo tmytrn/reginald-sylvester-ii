@@ -28,16 +28,11 @@ const Header = ({ page, data }) => {
             page == "about" ? "text-regi-red" : ""
           }`}
         >
-          <h1 className="text-lg md:text-xl uppercase font-sans font-medium">
+          <h1 className="text-sm md:text-md uppercase font-sans font-medium">
             Reginald Sylvester II
           </h1>
 
           <AnimatedText text={"B. 1987."} />
-          {/* <Typical
-            steps={[3000, "B. 1987.", 1000]}
-            wrapper="p"
-            className="text-lg md:text-xl font-sans font-medium inline-block remove-cursor"
-          /> */}
         </div>
         <a
           className={`md:hidden ${
@@ -56,7 +51,7 @@ const Header = ({ page, data }) => {
           initial="initial"
           animate="animate"
           transition={{ delay: 4.25, duration: 1 }}
-          className={`text-lg md:text-xl cursor-pointer hidden md:block font-sans font-medium uppercase hover:text-regi-red ${
+          className={`text-sm md:text-md cursor-pointer hidden md:block font-sans font-medium uppercase hover:text-regi-red ${
             page == "index" ? "text-regi-red" : ""
           }`}
         >
