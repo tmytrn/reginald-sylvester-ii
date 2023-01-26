@@ -16,7 +16,6 @@ const Image = ({
         src={`${src}?w=${width}${height ? "&h=" + height : ""}`}
         className={styles}
         onClick={() => {
-          console.log("go to slide: ", imageIndex);
           goToSlide(imageIndex);
           setShowSlider(true);
         }}

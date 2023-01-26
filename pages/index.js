@@ -119,8 +119,8 @@ function Home({ metaData, categories, bio, cv, preview }) {
                           className={` cursor-pointer flex justify-between uppercase text-sm border-b-2 border-black ${
                             currentPost?.slug?.current == post.slug.current &&
                             showPost
-                              ? "text-regi-red font-bold pt-[8px] pb-[4px]"
-                              : "font-normal pt-[12px] mb-[-3px]"
+                              ? "pt-[8px] pb-[4px]"
+                              : "pt-[12px] mb-[-3px]"
                           }`}
                           key={"post-" + post._id}
                           onClick={() => {
@@ -132,13 +132,34 @@ function Home({ metaData, categories, bio, cv, preview }) {
                           data-category={post.slug.current}
                           key={key}
                         >
-                          <span className="align-baseline basis-12/12 md:basis-6/12">
+                          <span
+                            className={`align-baseline basis-12/12 md:basis-6/12 ${
+                              currentPost?.slug?.current == post.slug.current &&
+                              showPost
+                                ? "text-regi-red font-bold "
+                                : "font-normal"
+                            }`}
+                          >
                             {post.title}
                           </span>
-                          <span className="align-baseline basis-5/12 hidden sm:flex text-left">
+                          <span
+                            className={`align-baseline basis-5/12 hidden sm:flex text-left ${
+                              currentPost?.slug?.current == post.slug.current &&
+                              showPost
+                                ? "pt-[4px] pb-[-4px] "
+                                : "pt-[0px] pb-[-4px]"
+                            }`}
+                          >
                             {post.location}
                           </span>
-                          <span className="align-baseline basis-1/12 hidden sm:flex justify-end">
+                          <span
+                            className={`align-baseline basis-1/12 hidden sm:flex justify-end ${
+                              currentPost?.slug?.current == post.slug.current &&
+                              showPost
+                                ? "pt-[4px] pb-[-4px]"
+                                : "pt-[0px] pb-[-4px]"
+                            }`}
+                          >
                             {moment(post.date).year()}
                           </span>
                         </a>

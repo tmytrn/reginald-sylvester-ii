@@ -78,7 +78,7 @@ const Post = ({ data }) => {
       <div
         className={`${
           showSlider ? "block z-50 " : "hidden z-0"
-        } w-full h-screen fixed top-0 left-0 bg-gray-900 px-4 md:px-8 flex-row`}
+        } w-full h-screen fixed top-0 left-0 bg-reginald-gray px-4 md:px-8 flex-row`}
       >
         <div
           className="absolute top-4 right-4 z-50 cursor-pointer"
@@ -92,7 +92,7 @@ const Post = ({ data }) => {
               return module.modules[0]._type === "artwork" ? (
                 <div key={key}>
                   <div className="w-full h-screen px-0 sm:px-12 md:px-24 flex flex-col-reverse md:flex-row justify-center items-center">
-                    <div className="text-white w-1/4 bottom-8 left-0 absolute self-start md:self-end flex flex-col">
+                    <div className="text-black w-1/4 bottom-8 left-0 absolute self-start md:self-end flex flex-col">
                       <span>{module.modules[0].title}</span>
                       <span>{moment(module.modules[0].date).year()}</span>
                       <span>

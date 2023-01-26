@@ -59,7 +59,7 @@ const MobilePost = ({ data }) => {
       <div
         className={`${
           showSlider ? "block z-50 " : "hidden z-0"
-        } w-full h-screen fixed top-0 left-0 bg-gray-900 px-4 md:px-8 flex-row md:hidden`}
+        } w-full h-screen fixed top-0 left-0 bg-reginald-gray px-4 md:px-8 flex-row md:hidden`}
       >
         <div
           className="absolute top-4 right-4 z-50 cursor-pointer"
@@ -74,7 +74,7 @@ const MobilePost = ({ data }) => {
               return module.modules[0]._type === "artwork" ? (
                 <div key={key}>
                   <div className="w-full h-screen px-0 md:px-48 flex flex-col-reverse md:flex-row justify-center items-center">
-                    <div className="text-white w-full bottom-8 left-0 absolute md:static self-start md:self-end flex flex-col">
+                    <div className="text-black w-full bottom-8 left-0 absolute md:static self-start md:self-end flex flex-col">
                       <div className="flex flex-row pb-4 md:pb-0">
                         <span
                           className="border-[1px] border-solid rounded-full mr-1"
