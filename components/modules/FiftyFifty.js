@@ -17,8 +17,7 @@ const FiftyFifty = ({ data, setShowSlider, goToSlide, imageIndex }) => {
             <div className="w-full md:w-half-spaced flex flex-col">
               <div
                 key={key}
-                className="w-full flex justify-start flex-col align-center px-0 md:px-0 pb-4 md:pb-0"
-              >
+                className="w-full flex justify-start flex-col align-center px-0 md:px-0 pb-4 md:pb-0">
                 <Image
                   styles={
                     "mb-2 md:mb-2 md:first:pl-0 md:pl-4 w-full cursor-pointer"
@@ -30,16 +29,18 @@ const FiftyFifty = ({ data, setShowSlider, goToSlide, imageIndex }) => {
                   goToSlide={goToSlide}
                   imageIndex={module.carouselIndex}
                 />
-                <div className="text-center">{`${module.title}, ${moment(
-                  module.date
-                ).year()}${module.etc ? `, ${module.etc}` : ""}`}</div>
+                <div className="text-center text-sm">{`${
+                  module.title
+                }, ${moment(module.date).year()}${
+                  module.etc ? `, ${module.etc}` : ""
+                }`}</div>
               </div>
             </div>
           );
         }
         if (module._type === "blockText") {
           return (
-            <div className="w-full md:w-half-spaced flex flex-col justify-center align-middle text-center">
+            <div className="w-full md:w-half-spaced flex flex-col justify-center align-middle text-center text-sm">
               <PortableText value={module.blocks} key={key} />
             </div>
           );

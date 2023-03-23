@@ -10,15 +10,15 @@ const Accordion = (props) => {
   // By using `AnimatePresence` to mount and unmount the contents, we can animate
   // them in and out while also only rendering the contents of open accordions
   return (
-    <div className="pb-[3px]">
+    <div className="">
       <a
-        className={`flex justify-between border-b-2 border-black mt-2 align-middle cursor-pointer text-sm font-medium uppercase ${
+        className={`flex justify-between border-b-2 border-black mt-2 pt-2 pb-1 align-middle cursor-pointer text-sm font-medium uppercase ${
           isOpen ? "text-regi-red border-regi-red" : " "
         }`}
         onClick={() => setExpanded(isOpen ? false : true)}>
         {props.title}
         <span
-          className={`w-2.5 h-2.5 text-center my-auto isOpen ? "fill-regi-red border-regi-red" : " "`}>
+          className={`w-2.5 h-2.5 text-center mt-[-2px] mb-auto isOpen ? "fill-regi-red border-regi-red" : " "`}>
           <Dot color={isOpen ? "#540d08" : "#000"} />
         </span>
       </a>

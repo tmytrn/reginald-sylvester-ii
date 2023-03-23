@@ -136,7 +136,7 @@ const Contact = ({ metaData }) => {
               }}
               className="w-full flex justify-between align-middle text-left font-medium uppercase border-b-2 border-black pb-[6px]">
               Send{" "}
-              <span className="2.5 h-2.5 text-center my-auto">
+              <span className="2.5 h-2.5 text-center mt-0 mb-auto">
                 <Dot color={"#000"} />
               </span>
             </button>

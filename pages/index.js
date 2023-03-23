@@ -78,7 +78,7 @@ function Home({ metaData, categories, bio, cv, preview }) {
                 {categories?.map((category, key) =>
                   category.posts?.length < 2 ? (
                     <a
-                      className={`mb-2 flex justify-between border-b-2 border-black align-middle cursor-pointer text-sm font-medium uppercase pb-[3px] ${
+                      className={`mt-2 pt-2 pb-1 flex justify-between border-b-2 border-black align-middle cursor-pointer text-sm font-medium uppercase  ${
                         currentPost?.slug?.current ==
                           category.posts[0]?.slug.current && showPost
                           ? "text-regi-red font-medium pt-[8px] mb-[0px] border-regi-red"
@@ -94,7 +94,7 @@ function Home({ metaData, categories, bio, cv, preview }) {
                       data-category={category.posts[0]?.slug.current}>
                       {category.posts[0]?.title}
                       <span
-                        className={`w-2.5 h-2.5 text-center my-auto isOpen ? "fill-regi-red border-regi-red" : " "`}>
+                        className={`w-2.5 h-2.5 text-center mt-[-2px] mb-auto isOpen ? "fill-regi-red border-regi-red" : " "`}>
                         <Dot
                           color={
                             currentPost?.slug?.current ==
@@ -115,7 +115,7 @@ function Home({ metaData, categories, bio, cv, preview }) {
                             currentPost?.slug?.current == post.slug.current &&
                             showPost
                               ? "pt-[8px] pb-[4px]"
-                              : "pt-[12px] mb-[-4px]"
+                              : "pt-[12px] "
                           }`}
                           key={"post-" + post._id}
                           onClick={() => {
