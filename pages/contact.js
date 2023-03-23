@@ -21,7 +21,7 @@ const Contact = ({ metaData }) => {
   const [mailMessage, setMailMessage] = useState("");
   const [loaderDidRun, setLoaderDidRun] = useContext(LoaderContext);
 
-  const labelStyles = "font-bold uppercase pr-2";
+  const labelStyles = "font-medium uppercase pr-2";
   const divStyles =
     "w-full flex justify-between border-b-2 border-black mb-2 text-black";
 
@@ -72,8 +72,7 @@ const Contact = ({ metaData }) => {
       <motion.main
         variants={mainVariants}
         exit="exit"
-        className="flex flex-col w-full md:flex-row h-screen z-30 text-sm "
-      >
+        className="flex flex-col w-full md:flex-row h-screen z-30 text-sm ">
         <div className="p-4 pt-24 md:pt-32 w-full">
           <form className="flex flex-col w-full md:w-1/2">
             <div className={divStyles}>
@@ -100,8 +99,7 @@ const Contact = ({ metaData }) => {
                   setEmail(e.target.value);
                 }}
                 required
-                className="w-full bg-reginald-gray focus:outline-none focus:cursor-text  focus:border-regi-red focus:ring-regi-red "
-              ></input>
+                className="w-full bg-reginald-gray focus:outline-none focus:cursor-text  focus:border-regi-red focus:ring-regi-red "></input>
             </div>
             <div className={divStyles}>
               <label htmlFor="subject" className={labelStyles}>
@@ -114,8 +112,7 @@ const Contact = ({ metaData }) => {
                   setSubject(e.target.value);
                 }}
                 required
-                className="w-full bg-reginald-gray focus:cursor-text focus:outline-none"
-              ></input>
+                className="w-full bg-reginald-gray focus:cursor-text focus:outline-none"></input>
             </div>
             <div className={divStyles}>
               <label htmlFor="message" className={labelStyles}>
@@ -137,10 +134,9 @@ const Contact = ({ metaData }) => {
               onClick={(e) => {
                 handleSubmit(e);
               }}
-              className="w-full flex justify-between align-middle text-left font-bold uppercase border-b-2 border-black pb-[6px]"
-            >
+              className="w-full flex justify-between align-middle text-left font-medium uppercase border-b-2 border-black pb-[6px]">
               Send{" "}
-              <span className="w-3 h-3 text-center my-auto">
+              <span className="2.5 h-2.5 text-center my-auto">
                 <Dot color={"#000"} />
               </span>
             </button>

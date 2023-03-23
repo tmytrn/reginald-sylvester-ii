@@ -50,10 +50,10 @@ const Post = ({ data }) => {
 
   return (
     <>
-      <div className="hidden md:flex flex-col ml-auto mr-0 relative w-full overflow-visible pt-24 mb-12">
+      <div className="hidden md:flex flex-col ml-auto mr-0 relative w-full overflow-visible pt-24 mb-12 font-medium">
         {data.modules ? (
-          <div className="px-4 pt-[8px]">
-            <h3 className="text-sm uppercase font-bold pb-4">
+          <div className="px-4 pt-[8px] font-medium">
+            <h3 className="text-sm uppercase font-medium pb-4">
               {data?.title}
               <br />
               {data?.location}
@@ -70,7 +70,7 @@ const Post = ({ data }) => {
             ))}
           </div>
         ) : (
-          <div className="px-4 pt-[8px]">
+          <div className="px-4 pt-[8px] font-medium text-sm">
             <PortableText value={data} />
           </div>
         )}
@@ -78,12 +78,10 @@ const Post = ({ data }) => {
       <div
         className={`${
           showSlider ? "block z-50 " : "hidden z-0"
-        } w-full h-screen fixed top-0 left-0 bg-reginald-gray px-4 md:px-8 flex-row`}
-      >
+        } w-full h-screen fixed top-0 left-0 bg-reginald-gray px-4 md:px-8 flex-row`}>
         <div
           className="absolute top-4 right-4 z-50 cursor-pointer"
-          onClick={() => setShowSlider(false)}
-        >
+          onClick={() => setShowSlider(false)}>
           <Close />
         </div>
         <Slider ref={sliderRef} {...settings}>
@@ -101,8 +99,9 @@ const Post = ({ data }) => {
                     </div>
                     <figure
                       className="w-full h-[90%] bg-contain bg-no-repeat bg-center"
-                      style={imgStyle(module.modules[0].image?.asset.url)}
-                    ></figure>
+                      style={imgStyle(
+                        module.modules[0].image?.asset.url
+                      )}></figure>
                   </div>
                 </div>
               ) : null;
@@ -121,8 +120,7 @@ const Post = ({ data }) => {
                         </div>
                         <figure
                           className="w-full h-[90%] bg-contain bg-no-repeat bg-center"
-                          style={imgStyle(slide.image?.asset.url)}
-                        ></figure>
+                          style={imgStyle(slide.image?.asset.url)}></figure>
                       </div>
                     </div>
                   )

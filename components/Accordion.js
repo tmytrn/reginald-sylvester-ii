@@ -12,15 +12,13 @@ const Accordion = (props) => {
   return (
     <div className="pb-[3px]">
       <a
-        className={`flex justify-between border-b-2 border-black mt-2 align-middle cursor-pointer text-sm font-bold uppercase ${
+        className={`flex justify-between border-b-2 border-black mt-2 align-middle cursor-pointer text-sm font-medium uppercase ${
           isOpen ? "text-regi-red border-regi-red" : " "
         }`}
-        onClick={() => setExpanded(isOpen ? false : true)}
-      >
+        onClick={() => setExpanded(isOpen ? false : true)}>
         {props.title}
         <span
-          className={`w-3 h-3 text-center my-auto isOpen ? "fill-regi-red border-regi-red" : " "`}
-        >
+          className={`w-2.5 h-2.5 text-center my-auto isOpen ? "fill-regi-red border-regi-red" : " "`}>
           <Dot color={isOpen ? "#540d08" : "#000"} />
         </span>
       </a>
@@ -35,8 +33,7 @@ const Accordion = (props) => {
               open: { opacity: 1, height: "auto" },
               collapsed: { opacity: 0, height: 0 },
             }}
-            transition={{ duration: 0.25 }}
-          >
+            transition={{ duration: 0.25 }}>
             {props.children}
           </motion.section>
         )}

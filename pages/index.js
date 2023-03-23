@@ -50,13 +50,11 @@ function Home({ metaData, categories, bio, cv, preview }) {
           }`}
           variants={mainVariants}
           exit="exit"
-          key="main"
-        >
+          key="main">
           <div
             className={`flex-custom1 md:h-0 relative w-full md:w-1/2 ${
               showPost ? "z-30" : "z-30"
-            }`}
-          >
+            }`}>
             <div className="left-side relative md:fixed top-0 left-0  flex-custom1 overflow-y-auto w-full md:w-1/2 max-h-screen ml-0 mr-auto">
               <div className="px-4 md:px-4 pt-24 md:pt-24">
                 <SinglePost
@@ -80,10 +78,10 @@ function Home({ metaData, categories, bio, cv, preview }) {
                 {categories?.map((category, key) =>
                   category.posts?.length < 2 ? (
                     <a
-                      className={`mb-2 flex justify-between border-b-2 border-black align-middle cursor-pointer text-sm font-bold uppercase pb-[3px] ${
+                      className={`mb-2 flex justify-between border-b-2 border-black align-middle cursor-pointer text-sm font-medium uppercase pb-[3px] ${
                         currentPost?.slug?.current ==
                           category.posts[0]?.slug.current && showPost
-                          ? "text-regi-red font-bold pt-[8px] pb-[4px] mb-[0px] border-regi-red"
+                          ? "text-regi-red font-medium pt-[8px] mb-[0px] border-regi-red"
                           : "pt-[8px] mb-[0px]"
                       }`}
                       key={"post-" + category.posts[0]?._id}
@@ -93,12 +91,10 @@ function Home({ metaData, categories, bio, cv, preview }) {
                         setIsCVActive(false);
                         setIsBioActive(false);
                       }}
-                      data-category={category.posts[0]?.slug.current}
-                    >
+                      data-category={category.posts[0]?.slug.current}>
                       {category.posts[0]?.title}
                       <span
-                        className={`w-3 h-3 text-center my-auto isOpen ? "fill-regi-red border-regi-red" : " "`}
-                      >
+                        className={`w-2.5 h-2.5 text-center my-auto isOpen ? "fill-regi-red border-regi-red" : " "`}>
                         <Dot
                           color={
                             currentPost?.slug?.current ==
@@ -112,15 +108,14 @@ function Home({ metaData, categories, bio, cv, preview }) {
                   ) : (
                     <Accordion
                       title={category.name}
-                      key={"category-" + category._id}
-                    >
+                      key={"category-" + category._id}>
                       {category.posts?.map((post, key) => (
                         <a
                           className={` cursor-pointer flex justify-between uppercase text-sm border-b-2 border-black ${
                             currentPost?.slug?.current == post.slug.current &&
                             showPost
                               ? "pt-[8px] pb-[4px]"
-                              : "pt-[12px] mb-[-3px]"
+                              : "pt-[12px] mb-[-4px]"
                           }`}
                           key={"post-" + post._id}
                           onClick={() => {
@@ -130,36 +125,32 @@ function Home({ metaData, categories, bio, cv, preview }) {
                             setIsBioActive(false);
                           }}
                           data-category={post.slug.current}
-                          key={key}
-                        >
+                          key={key}>
                           <span
-                            className={`align-baseline basis-12/12 md:basis-6/12 ${
+                            className={`align-bottom basis-12/12 md:basis-6/12 h-[20px] ${
                               currentPost?.slug?.current == post.slug.current &&
                               showPost
-                                ? "text-regi-red font-bold "
+                                ? "text-regi-red font-medium mt-[4px] mb-[-6px]"
                                 : "font-normal"
-                            }`}
-                          >
+                            }`}>
                             {post.title}
                           </span>
                           <span
-                            className={`align-baseline basis-5/12 hidden sm:flex text-left ${
+                            className={`align-bottom basis-5/12 hidden sm:flex text-left ${
                               currentPost?.slug?.current == post.slug.current &&
                               showPost
                                 ? "pt-[4px] pb-[-4px] "
                                 : "pt-[0px] pb-[-4px]"
-                            }`}
-                          >
+                            }`}>
                             {post.location}
                           </span>
                           <span
-                            className={`align-baseline basis-1/12 hidden sm:flex justify-end ${
+                            className={`align-bottom basis-1/12 hidden sm:flex justify-end ${
                               currentPost?.slug?.current == post.slug.current &&
                               showPost
                                 ? "pt-[4px] pb-[-4px]"
                                 : "pt-[0px] pb-[-4px]"
-                            }`}
-                          >
+                            }`}>
                             {moment(post.date).year()}
                           </span>
                         </a>

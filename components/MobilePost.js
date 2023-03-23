@@ -30,10 +30,10 @@ const MobilePost = ({ data }) => {
   return (
     <>
       <div className="fixed bg-reginald-gray md:hidden  flex-col ml-auto mr-0 w-full overflow-auto h-full top-0 left-0 z-30 pb-24">
-        <div className="px-4 pt-32 md:pt-32">
+        <div className="px-4 pt-32 md:pt-32 text-sm font-medium">
           {data?.modules ? (
             <>
-              <h3 className="pt-[4px] text-sm uppercase font-bold pb-4">
+              <h3 className="pt-[4px] text-sm uppercase font-medium pb-4">
                 {data?.title}
                 <br />
                 {data?.location}
@@ -59,12 +59,10 @@ const MobilePost = ({ data }) => {
       <div
         className={`${
           showSlider ? "block z-50 " : "hidden z-0"
-        } w-full h-screen fixed top-0 left-0 bg-reginald-gray px-4 md:px-8 flex-row md:hidden`}
-      >
+        } w-full h-screen fixed top-0 left-0 bg-reginald-gray px-4 md:px-8 flex-row md:hidden`}>
         <div
           className="absolute top-4 right-4 z-50 cursor-pointer"
-          onClick={() => setShowSlider(false)}
-        >
+          onClick={() => setShowSlider(false)}>
           <Close />
         </div>
         <div></div>
@@ -78,14 +76,12 @@ const MobilePost = ({ data }) => {
                       <div className="flex flex-row pb-4 md:pb-0">
                         <span
                           className="border-[1px] border-solid rounded-full mr-1"
-                          onClick={() => sliderRef.current.slickPrev()}
-                        >
+                          onClick={() => sliderRef.current.slickPrev()}>
                           <LeftCarouselArrow />
                         </span>
                         <span
                           className="border-[1px] border-solid rounded-full"
-                          onClick={() => sliderRef.current.slickNext()}
-                        >
+                          onClick={() => sliderRef.current.slickNext()}>
                           <RightCarouselArrow />
                         </span>
                       </div>
@@ -99,8 +95,9 @@ const MobilePost = ({ data }) => {
                     </div>
                     <figure
                       className="w-full h-[90%] bg-contain bg-no-repeat bg-center"
-                      style={imgStyle(module.modules[0].image?.asset.url)}
-                    ></figure>
+                      style={imgStyle(
+                        module.modules[0].image?.asset.url
+                      )}></figure>
                   </div>
                 </div>
               ) : null;
@@ -114,14 +111,12 @@ const MobilePost = ({ data }) => {
                           <div className="flex flex-row pb-4 md:pb-0">
                             <span
                               className="border-[1px] border-solid rounded-full mr-1"
-                              onClick={() => sliderRef.current.slickPrev()}
-                            >
+                              onClick={() => sliderRef.current.slickPrev()}>
                               <LeftCarouselArrow />
                             </span>
                             <span
                               className="border-[1px] border-solid rounded-full"
-                              onClick={() => sliderRef.current.slickNext()}
-                            >
+                              onClick={() => sliderRef.current.slickNext()}>
                               <RightCarouselArrow />
                             </span>
                           </div>
@@ -135,8 +130,7 @@ const MobilePost = ({ data }) => {
                         </div>
                         <figure
                           className="w-full h-[90%] bg-contain bg-no-repeat bg-center"
-                          style={imgStyle(slide.image?.asset.url)}
-                        ></figure>
+                          style={imgStyle(slide.image?.asset.url)}></figure>
                       </div>
                     </div>
                   )

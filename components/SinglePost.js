@@ -18,17 +18,14 @@ const SinglePost = ({
         setCurrentPost(postContent);
         setIsCVActive(true);
         setIsBioActive(false);
-      }}
-    >
+      }}>
       <a
-        className={`flex justify-between border-b-2 border-black mt-2 align-middle cursor-pointer text-sm font-bold uppercase ${
+        className={`flex justify-between border-b-2 border-black mt-2 align-middle cursor-pointer text-sm font-medium uppercase ${
           currentPost == postContent ? "text-regi-red border-regi-red" : " "
-        }`}
-      >
+        }`}>
         {name}
         <span
-          className={`w-3 h-3 text-center my-auto isOpen ? "fill-regi-red border-regi-red" : " "`}
-        >
+          className={`w-2.5 h-2.5 text-center my-auto isOpen ? "fill-regi-red border-regi-red" : " "`}>
           <Dot color={currentPost == postContent ? "#540d08" : "#000"} />
         </span>
       </a>

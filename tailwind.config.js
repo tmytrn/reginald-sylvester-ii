@@ -8,6 +8,9 @@ module.exports = {
     fontFamily: {
       sans: ["Gotham", "sans-serif"],
     },
+    fontSize: {
+      sm: ["14px", "16px"],
+    },
     extend: {
       margin: {
         center: "0 auto",
