@@ -158,6 +158,29 @@ function Home({ metaData, categories, bio, cv, preview }) {
                     </Accordion>
                   )
                 )}
+
+                <div className="">
+                  <a
+                    href="https://nexus-design-house.myshopify.com"
+                    className={`flex justify-between border-b-2 border-black mt-2 pt-2 pb-1 align-middle cursor-pointer text-sm font-medium uppercase`}>
+                    Nexus Design House
+                    <span
+                      className={`w-2.5 h-2.5 text-center mt-[-2px] mb-auto isOpen ? "fill-regi-red border-regi-red" : " "`}>
+                      <Dot color={"#000"} />
+                    </span>
+                  </a>
+                </div>
+                <div className="">
+                  <a
+                    href="https://natchez-store.myshopify.com/"
+                    className={`flex justify-between border-b-2 border-black mt-2 pt-2 pb-1 align-middle cursor-pointer text-sm font-medium uppercase`}>
+                    Natchez
+                    <span
+                      className={`w-2.5 h-2.5 text-center mt-[-2px] mb-auto isOpen ? "fill-regi-red border-regi-red" : " "`}>
+                      <Dot color={"#000"} />
+                    </span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
