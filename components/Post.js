@@ -70,7 +70,7 @@ const Post = ({ data }) => {
             ))}
           </div>
         ) : (
-          <div className="px-4 pt-[8px] font-medium text-sm">
+          <div className="px-4 pt-4 font-medium text-sm">
             <PortableText value={data} />
           </div>
         )}

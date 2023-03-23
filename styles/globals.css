@@ -25,6 +25,10 @@ p {
   box-sizing: border-box;
 }
 
+strong {
+  font-weight: 500;
+}
+
 .left-side{
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
   scrollbar-width: none;  /* Firefox */
