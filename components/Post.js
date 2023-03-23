@@ -111,7 +111,7 @@ const Post = ({ data }) => {
                   slide._type == "artwork" && (
                     <div key={key}>
                       <div className="w-full h-screen px-0 sm:px-12 md:px-24 flex justify-center items-center">
-                        <div className="text-white w-1/4 bottom-8 left-0 absolute self-start md:self-end flex flex-col">
+                        <div className=" w-1/4 bottom-8 left-0 absolute self-start md:self-end flex flex-col">
                           <span>{module.modules[0].title}</span>
                           <span>{moment(module.modules[0].date).year()}</span>
                           <span>

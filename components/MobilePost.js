@@ -107,7 +107,7 @@ const MobilePost = ({ data }) => {
                   slide._type == "artwork" && (
                     <div key={key}>
                       <div className="w-full h-screen px-0 md:px-48 flex flex-col-reverse md:flex-row justify-center items-center">
-                        <div className="text-white w-full bottom-8 left-0 absolute md:static self-start md:self-end flex flex-col">
+                        <div className=" w-full bottom-8 left-0 absolute md:static self-start md:self-end flex flex-col">
                           <div className="flex flex-row pb-4 md:pb-0">
                             <span
                               className="border-[1px] border-solid rounded-full mr-1"
