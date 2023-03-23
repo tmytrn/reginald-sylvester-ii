@@ -4,6 +4,8 @@ node_modules/
 logs/
 /.next/*
 /.next/
+.node_repl_history
+.next
 .swc
 .DS_Store
 package-lock.json
