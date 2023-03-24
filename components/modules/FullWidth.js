@@ -22,7 +22,7 @@ const FullWidth = ({
 
   if (type === "artwork") {
     return (
-      <div className="mb-4">
+      <div className="py-2">
         <div className="w-full font-normal text-base aspect-video">
           <Image
             styles={"cursor-pointer"}
@@ -38,7 +38,7 @@ const FullWidth = ({
   }
   if (type === "blockText") {
     return (
-      <div className="mb-4">
+      <div className="py-2">
         <PortableText value={data.blocks} />{" "}
       </div>
     );
