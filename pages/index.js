@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Post from "components/Post";
 import Dot from "svg/Dot";
-import { useContext, useState } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 import { Router, useRouter } from "next/router";
 import Footer from "components/Footer";
 import MobilePost from "components/MobilePost";
@@ -17,6 +17,8 @@ function Home({ metaData, categories, bio, cv, preview }) {
   const [currentPost, setCurrentPost] = useState();
   const [isCVActive, setIsCVActive] = useState();
   const [isBioActive, setIsBioActive] = useState();
+  const postRef = useRef(null);
+  const mobilePostRef = useRef(null);
   const { loaderDidRun, showPost, setShowPost } = useContext(LoaderContext);
   const router = useRouter();
 
@@ -32,6 +34,9 @@ function Home({ metaData, categories, bio, cv, preview }) {
     },
     exit: { opacity: 0, y: -100 },
   };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPost]);
 
   return (
     <div>
@@ -158,18 +163,6 @@ function Home({ metaData, categories, bio, cv, preview }) {
                     </Accordion>
                   )
                 )}
-
-                <div className="">
-                  <a
-                    href="https://nexus-design-house.myshopify.com"
-                    className={`flex justify-between border-b-2 border-black mt-2 pt-2 pb-1 align-middle cursor-pointer text-sm font-medium uppercase`}>
-                    Nexus Design House
-                    <span
-                      className={`w-2.5 h-2.5 text-center mt-[-2px] mb-auto isOpen ? "fill-regi-red border-regi-red" : " "`}>
-                      <Dot color={"#000"} />
-                    </span>
-                  </a>
-                </div>
                 <div className="">
                   <a
                     href="https://natchez-store.myshopify.com/"
@@ -181,14 +174,27 @@ function Home({ metaData, categories, bio, cv, preview }) {
                     </span>
                   </a>
                 </div>
+                <div className="">
+                  <a
+                    href="https://nexus-design-house.myshopify.com"
+                    className={`flex justify-between border-b-2 border-black mt-2 pt-2 pb-1 align-middle cursor-pointer text-sm font-medium uppercase`}>
+                    Nexus Design House
+                    <span
+                      className={`w-2.5 h-2.5 text-center mt-[-2px] mb-auto isOpen ? "fill-regi-red border-regi-red" : " "`}>
+                      <Dot color={"#000"} />
+                    </span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="flex-custom1 w-full md:w-1/2 relative ml-auto mr-0">
+          <div
+            className="flex-custom1 w-full md:w-1/2 relative ml-auto mr-0"
+            ref={postRef}>
             {showPost && <Post data={currentPost} />}
           </div>
-          {showPost && <MobilePost data={currentPost} />}
+          {showPost && <MobilePost data={currentPost} ref={mobilePostRef} />}
         </motion.main>
         <Footer activePage={"Index"} loaderDidRun={loaderDidRun} />
       </AnimatePresence>

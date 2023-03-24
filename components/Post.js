@@ -10,7 +10,6 @@ import RightCarouselArrow from "svg/RightCarouselArrow";
 const Post = ({ data }) => {
   if (!data) return null;
   const [showSlider, setShowSlider] = useState(false);
-
   const sliderRef = useRef();
   const settings = {
     dots: false,
@@ -52,7 +51,7 @@ const Post = ({ data }) => {
     <>
       <div className="hidden md:flex flex-col ml-auto mr-0 relative w-full overflow-visible pt-24 mb-12 font-medium">
         {data.modules ? (
-          <div className="px-4 pt-[8px] font-medium">
+          <div className="px-4 pt-4 font-medium">
             <h3 className="text-sm uppercase font-medium pb-4">
               {data?.title}
               <br />
@@ -90,10 +89,14 @@ const Post = ({ data }) => {
               return module.modules[0]._type === "artwork" ? (
                 <div key={key}>
                   <div className="w-full h-screen px-0 sm:px-12 md:px-24 flex flex-col-reverse md:flex-row justify-center items-center">
-                    <div className="text-black w-1/4 bottom-8 left-0 absolute self-start md:self-end flex flex-col">
-                      <span>{module.modules[0].title}</span>
-                      <span>{moment(module.modules[0].date).year()}</span>
-                      <span>
+                    <div className="text-black w-full md:w-1/6 bottom-8 left-0 absolute self-start md:self-end flex flex-col">
+                      <span className="text-sm tracking-tight">
+                        {module.modules[0].title}
+                      </span>
+                      <span className="text-sm tracking-tight">
+                        {moment(module.modules[0].date).year()}
+                      </span>
+                      <span className="text-sm tracking-tight">
                         {module.modules[0].etc ? module.modules[0].etc : ""}
                       </span>
                     </div>
@@ -111,10 +114,14 @@ const Post = ({ data }) => {
                   slide._type == "artwork" && (
                     <div key={key}>
                       <div className="w-full h-screen px-0 sm:px-12 md:px-24 flex justify-center items-center">
-                        <div className=" w-1/4 bottom-8 left-0 absolute self-start md:self-end flex flex-col">
-                          <span>{module.modules[0].title}</span>
-                          <span>{moment(module.modules[0].date).year()}</span>
-                          <span>
+                        <div className="w-full md:w-1/6 bottom-8 left-0 absolute self-start md:self-end flex flex-col">
+                          <span className="text-sm tracking-tight">
+                            {module.modules[0].title}
+                          </span>
+                          <span className="text-sm tracking-tight">
+                            {moment(module.modules[0].date).year()}
+                          </span>
+                          <span className="text-sm tracking-tight">
                             {module.modules[0].etc ? module.modules[0].etc : ""}
                           </span>
                         </div>
