@@ -17,8 +17,6 @@ function Home({ metaData, categories, bio, cv, preview }) {
   const [currentPost, setCurrentPost] = useState();
   const [isCVActive, setIsCVActive] = useState();
   const [isBioActive, setIsBioActive] = useState();
-  const postRef = useRef(null);
-  const mobilePostRef = useRef(null);
   const { loaderDidRun, showPost, setShowPost } = useContext(LoaderContext);
   const router = useRouter();
 
@@ -61,7 +59,7 @@ function Home({ metaData, categories, bio, cv, preview }) {
               showPost ? "z-30" : "z-30"
             }`}>
             <div className="left-side relative md:fixed top-0 left-0  flex-custom1 overflow-y-auto w-full md:w-1/2 max-h-screen ml-0 mr-auto">
-              <div className="px-4 md:px-4 pt-24 md:pt-24">
+              <div className="px-4 md:px-4 py-24 md:pt-24">
                 <SinglePost
                   name={"CV"}
                   postContent={cv}
@@ -189,12 +187,10 @@ function Home({ metaData, categories, bio, cv, preview }) {
             </div>
           </div>
 
-          <div
-            className="flex-custom1 w-full md:w-1/2 relative ml-auto mr-0"
-            ref={postRef}>
+          <div className="flex-custom1 w-full md:w-1/2 relative ml-auto mr-0">
             {showPost && <Post data={currentPost} />}
           </div>
-          {showPost && <MobilePost data={currentPost} ref={mobilePostRef} />}
+          {showPost && <MobilePost data={currentPost} />}
         </motion.main>
         <Footer activePage={"Index"} loaderDidRun={loaderDidRun} />
       </AnimatePresence>

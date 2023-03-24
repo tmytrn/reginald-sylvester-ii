@@ -27,13 +27,10 @@ const MobilePost = ({ data }) => {
   const imgStyle = (imgSrc) => ({
     backgroundImage: `url(${imgSrc})`,
   });
-  return;
-  {
-    data ? (
-      <div>
-        <div
-          className="fixed bg-reginald-gray md:hidden  flex-col ml-auto mr-0 w-full overflow-auto h-full top-0 left-0 z-30 pb-24"
-          ref={mobilePostRef}>
+  return (
+    data && (
+      <>
+        <div className="fixed bg-reginald-gray md:hidden  flex-col ml-auto mr-0 w-full overflow-auto h-full top-0 left-0 z-30 pb-24">
           <div className="px-4 pt-32 md:pt-32 text-sm font-medium">
             {data?.modules ? (
               <>
@@ -149,9 +146,9 @@ const MobilePost = ({ data }) => {
             })}
           </Slider>
         </div>
-      </div>
-    ) : null;
-  }
+      </>
+    )
+  );
 };
 
 export default MobilePost;
