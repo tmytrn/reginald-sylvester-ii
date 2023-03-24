@@ -60,7 +60,7 @@ const MobilePost = ({ data }) => {
         <div
           className={`${
             showSlider ? "block z-50 " : "hidden z-0"
-          } w-full h-screen fixed top-0 left-0 bg-reginald-gray px-4 md:px-8 flex-row md:hidden`}>
+          } w-full h-full fixed top-0 left-0 bg-reginald-gray px-4 md:px-8 flex-row md:hidden`}>
           <div
             className="absolute top-4 right-4 z-50 cursor-pointer"
             onClick={() => setShowSlider(false)}>
@@ -73,15 +73,15 @@ const MobilePost = ({ data }) => {
                 return module.modules[0]._type === "artwork" ? (
                   <div key={key}>
                     <div className="w-full h-screen px-0 md:px-48 flex flex-col-reverse md:flex-row justify-center items-center">
-                      <div className="text-black w-full bottom-8 left-0 absolute md:static self-start md:self-end flex flex-col">
-                        <div className="flex flex-row pb-4 md:pb-0">
+                      <div className="text-black w-full bottom-4 left-0 absolute md:static self-start md:self-end flex flex-col">
+                        <div className="flex flex-row pb-2">
                           <span
-                            className="border-[1px] border-solid rounded-full mr-1"
+                            className="w-5 h-5 mr-1"
                             onClick={() => sliderRef.current.slickPrev()}>
                             <LeftCarouselArrow />
                           </span>
                           <span
-                            className="border-[1px] border-solid rounded-full"
+                            className="w-5 h-5"
                             onClick={() => sliderRef.current.slickNext()}>
                             <RightCarouselArrow />
                           </span>
@@ -97,7 +97,7 @@ const MobilePost = ({ data }) => {
                         </span>
                       </div>
                       <figure
-                        className="w-full h-[90%] bg-contain bg-no-repeat bg-center"
+                        className="w-full h-full pt-[100%] bg-contain bg-no-repeat bg-center"
                         style={imgStyle(
                           module.modules[0].image?.asset.url
                         )}></figure>
@@ -110,15 +110,15 @@ const MobilePost = ({ data }) => {
                     slide._type == "artwork" && (
                       <div key={key}>
                         <div className="w-full h-screen px-0 md:px-48 flex flex-col-reverse md:flex-row justify-center items-center">
-                          <div className=" w-full bottom-8 left-0 absolute md:static self-start md:self-end flex flex-col">
-                            <div className="flex flex-row pb-4 md:pb-0">
+                          <div className=" w-full bottom-4 left-0 absolute md:static self-start md:self-end flex flex-col">
+                            <div className="flex flex-row pb-2">
                               <span
-                                className="border-[1px] border-solid rounded-full mr-1"
+                                className="w-5 h-5 mr-1"
                                 onClick={() => sliderRef.current.slickPrev()}>
                                 <LeftCarouselArrow />
                               </span>
                               <span
-                                className="border-[1px] border-solid rounded-full"
+                                className="w-5 h-5"
                                 onClick={() => sliderRef.current.slickNext()}>
                                 <RightCarouselArrow />
                               </span>
@@ -134,7 +134,7 @@ const MobilePost = ({ data }) => {
                             </span>
                           </div>
                           <figure
-                            className="w-full h-[90%] bg-contain bg-no-repeat bg-center"
+                            className="w-full h-full bg-contain bg-no-repeat bg-center"
                             style={imgStyle(slide.image?.asset.url)}></figure>
                         </div>
                       </div>

@@ -81,7 +81,7 @@ function Home({ metaData, categories, bio, cv, preview }) {
                 {categories?.map((category, key) =>
                   category.posts?.length < 2 ? (
                     <a
-                      className={`mt-2 pt-2 pb-1 flex justify-between border-b-2 border-black align-middle cursor-pointer text-sm font-medium uppercase  ${
+                      className={`pt-3 pb-1 flex justify-between border-b-2 border-black align-middle cursor-pointer text-sm font-medium uppercase  ${
                         currentPost?.slug?.current ==
                           category.posts[0]?.slug.current && showPost
                           ? "text-regi-red font-medium pt-[8px] mb-[0px] border-regi-red"
@@ -164,7 +164,7 @@ function Home({ metaData, categories, bio, cv, preview }) {
                 <div className="">
                   <a
                     href="https://natchez-store.myshopify.com/"
-                    className={`flex justify-between border-b-2 border-black mt-2 pt-2 pb-1 align-middle cursor-pointer text-sm font-medium uppercase`}>
+                    className={`flex justify-between border-b-2 border-black pt-3 pb-1 align-middle cursor-pointer text-sm font-medium uppercase`}>
                     Natchez
                     <span
                       className={`w-2.5 h-2.5 text-center mt-[-2px] mb-auto isOpen ? "fill-regi-red border-regi-red" : " "`}>
@@ -175,7 +175,7 @@ function Home({ metaData, categories, bio, cv, preview }) {
                 <div className="">
                   <a
                     href="https://nexus-design-house.myshopify.com"
-                    className={`flex justify-between border-b-2 border-black mt-2 pt-2 pb-1 align-middle cursor-pointer text-sm font-medium uppercase`}>
+                    className={`flex justify-between border-b-2 border-black pt-3 pb-1 align-middle cursor-pointer text-sm font-medium uppercase`}>
                     Nexus Design House
                     <span
                       className={`w-2.5 h-2.5 text-center mt-[-2px] mb-auto isOpen ? "fill-regi-red border-regi-red" : " "`}>

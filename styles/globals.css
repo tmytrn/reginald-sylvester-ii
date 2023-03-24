@@ -55,3 +55,9 @@ textarea{
 .__react_modal_image__header{
   background-color: rgba(0, 0, 0, 0) !important;
 }
+
+/* @media screen and (-webkit-min-device-pixel-ratio:0) { 
+.h-screen{
+  margin-bottom: px;
+}
+} */

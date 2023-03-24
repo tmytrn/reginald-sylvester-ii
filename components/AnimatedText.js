@@ -56,7 +56,7 @@ const AnimatedText = ({ text }) => {
 
   return (
     <motion.p
-      className={`text-sm md:text-md font-sans font-medium inline-block ${
+      className={`text-sm md:text-md font-sans font-medium block mt-3 md:mt-0 ${
         isPulsing ? "pulse-cursor" : ""
       }`}
       variants={container}
@@ -67,15 +67,13 @@ const AnimatedText = ({ text }) => {
       }}
       onAnimationComplete={() => {
         setIsPulsing(false);
-      }}
-    >
+      }}>
       {words.map((element, index) => {
         return (
           <motion.span
             style={{ display: "inline-block" }}
             variants={item}
-            key={index}
-          >
+            key={index}>
             {element}
           </motion.span>
         );

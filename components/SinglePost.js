@@ -20,7 +20,7 @@ const SinglePost = ({
         setIsBioActive(false);
       }}>
       <a
-        className={`flex justify-between border-b-2 border-black mt-2 pt-2 pb-1 align-middle cursor-pointer text-sm font-medium uppercase ${
+        className={`flex justify-between border-b-2 border-black pt-3 pb-1 align-middle cursor-pointer text-sm font-medium uppercase ${
           currentPost == postContent ? "text-regi-red border-regi-red" : " "
         }`}>
         {name}
