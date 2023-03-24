@@ -39,7 +39,7 @@ const FiftyFifty = ({ data, setShowSlider, goToSlide, imageIndex }) => {
         }
         if (module._type === "blockText") {
           return (
-            <div className="w-full md:w-half-spaced flex flex-col justify-center align-middle text-center text-sm">
+            <div className="w-full md:w-half-spaced flex flex-col justify-center align-middle md:text-center text-sm">
               <PortableText value={module.blocks} key={key} />
             </div>
           );

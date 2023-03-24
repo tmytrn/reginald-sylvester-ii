@@ -71,8 +71,8 @@ const MobilePost = ({ data }) => {
             {data.modules?.map((module, key) => {
               if (module._type == "fullWidth") {
                 return module.modules[0]._type === "artwork" ? (
-                  <div key={key}>
-                    <div className="w-full h-screen px-0 md:px-48 flex flex-col-reverse md:flex-row justify-center items-center">
+                  <div key={key} className="h-full">
+                    <div className="w-full h-full px-0 md:px-48 flex flex-col-reverse md:flex-row justify-center items-center">
                       <div className="text-black w-full bottom-4 left-0 absolute md:static self-start md:self-end flex flex-col">
                         <div className="flex flex-row pb-2">
                           <span
@@ -108,8 +108,8 @@ const MobilePost = ({ data }) => {
                 return module.modules.map(
                   (slide, key) =>
                     slide._type == "artwork" && (
-                      <div key={key}>
-                        <div className="w-full h-screen px-0 md:px-48 flex flex-col-reverse md:flex-row justify-center items-center">
+                      <div key={key} className="h-full">
+                        <div className="w-full h-full px-0 md:px-48 flex flex-col-reverse md:flex-row justify-center items-center">
                           <div className=" w-full bottom-4 left-0 absolute md:static self-start md:self-end flex flex-col">
                             <div className="flex flex-row pb-2">
                               <span
