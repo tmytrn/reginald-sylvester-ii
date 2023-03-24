@@ -51,7 +51,7 @@ const Post = ({ data }) => {
     <>
       <div className="hidden md:flex flex-col ml-auto mr-0 relative w-full overflow-visible pt-24 mb-12 font-medium">
         {data.modules ? (
-          <div className="px-4  font-medium">
+          <div className="px-4 pt-4 font-medium">
             <h3 className="text-sm uppercase font-medium pb-4">
               {data?.title}
               <br />
@@ -69,7 +69,7 @@ const Post = ({ data }) => {
             ))}
           </div>
         ) : (
-          <div className="px-4  font-medium text-sm">
+          <div className="px-4 pt-4 font-medium text-sm">
             <PortableText value={data} />
           </div>
         )}

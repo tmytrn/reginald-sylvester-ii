@@ -31,9 +31,8 @@ const FiftyFifty = ({ data, setShowSlider, goToSlide, imageIndex }) => {
                 />
                 <div className="text-center text-sm">{`${
                   module.title
-                }, ${moment(module.date).year()}${
-                  module.etc ? `, ${module.etc}` : ""
-                }`}</div>
+                } (${moment(module.date).year()})
+                `}</div>
               </div>
             </div>
           );
