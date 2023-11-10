@@ -3,7 +3,7 @@ import { PortableText } from "@portabletext/react";
 import { useState } from "react";
 import Image from "../Image";
 
-const FiftyFifty = ({ data, setShowSlider, goToSlide, imageIndex }) => {
+const FiftyFifty = ({ data, setShowSlider, goToSlide }) => {
   // console.log("fiftyFifty: ", data);
   const { modules } = data;
   // const increment = () => {
@@ -40,7 +40,11 @@ const FiftyFifty = ({ data, setShowSlider, goToSlide, imageIndex }) => {
         if (module._type === "blockText") {
           return (
             <div className="w-full md:w-half-spaced flex flex-col justify-center align-middle md:text-center text-sm py-2">
-              <PortableText value={module.blocks} key={key} />
+              <PortableText
+                value={module.blocks}
+                key={key}
+                onMissingComponent={false}
+              />
             </div>
           );
         }

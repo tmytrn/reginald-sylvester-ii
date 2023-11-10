@@ -11,16 +11,15 @@ const Image = ({
   imageIndex,
 }) => {
   return (
-    <>
-      <img
-        src={`${src}?w=${width}${height ? "&h=" + height : ""}`}
-        className={styles}
-        onClick={() => {
-          goToSlide(imageIndex);
-          setShowSlider(true);
-        }}
-      />
-    </>
+    <img
+      src={`${src}?w=${width}${height ? "&h=" + height : ""}`}
+      className={styles}
+      onClick={() => {
+        // console.log("go to slide(Image): ", imageIndex)
+        goToSlide(imageIndex);
+        setShowSlider(true);
+      }}
+    />
   );
 };
 export default Image;

@@ -9,7 +9,7 @@ const tagMap = {
 };
 
 const Tag = ({ type }) => {
-  console.log(type);
+  // console.log(type);
   return tagMap[type];
 };
 

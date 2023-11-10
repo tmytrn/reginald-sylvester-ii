@@ -10,7 +10,7 @@ const Accordion = (props) => {
   // By using `AnimatePresence` to mount and unmount the contents, we can animate
   // them in and out while also only rendering the contents of open accordions
   return (
-    <div className="">
+    <div>
       <a
         className={`flex justify-between border-b-2 border-black pt-3 pb-1 align-middle cursor-pointer text-sm font-medium uppercase ${
           isOpen ? "text-regi-red border-regi-red" : " "

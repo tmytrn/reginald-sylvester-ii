@@ -127,8 +127,7 @@ function Home({ metaData, categories, bio, cv, preview }) {
                             setIsCVActive(false);
                             setIsBioActive(false);
                           }}
-                          data-category={post.slug.current}
-                          key={key}>
+                          data-category={post.slug.current}>
                           <span
                             className={`align-bottom basis-12/12 md:basis-6/12 h-[20px] ${
                               currentPost?.slug?.current == post.slug.current &&

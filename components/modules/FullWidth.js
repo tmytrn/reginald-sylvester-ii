@@ -2,13 +2,7 @@ import { PortableText } from "@portabletext/react";
 import { useState } from "react";
 import Image from "../Image";
 
-const FullWidth = ({
-  data,
-  setShowSlider,
-  goToSlide,
-  imageIndex,
-  incrementImageIndex,
-}) => {
+const FullWidth = ({ data, setShowSlider, goToSlide }) => {
   if (!data.modules) {
     return null;
   }
@@ -39,7 +33,7 @@ const FullWidth = ({
   if (type === "blockText") {
     return (
       <div className="py-2">
-        <PortableText value={data.blocks} />{" "}
+        <PortableText value={data.blocks} onMissingComponent={false} />
       </div>
     );
   }

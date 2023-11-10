@@ -9,7 +9,6 @@ import "swiper/swiper-bundle.css";
 import "swiper/css";
 import "swiper/css/zoom";
 import "swiper/css/navigation";
-import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 
 const Post = ({ data }) => {
@@ -17,17 +16,9 @@ const Post = ({ data }) => {
   const [showSlider, setShowSlider] = useState(false);
   const [isZooming, setIsZooming] = useState(false);
   const sliderRef = useRef();
-  const settings = {
-    dots: false,
-    speed: 200,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: true,
-    fade: true,
-  };
 
   useEffect(() => {
-    if (!data.modules) return;
+    if (data.modules == null) return;
     let index = 0;
     for (let i = 0; i < data.modules.length; i++) {
       if (data.modules[i]._type == "fullWidth") {
@@ -43,19 +34,17 @@ const Post = ({ data }) => {
         }
       }
     }
+    sliderRef.current.swiper.update();
   }, [data]);
 
-  const imgStyle = (imgSrc) => ({
-    backgroundImage: `url(${imgSrc})`,
-  });
+  useEffect(() => {
+    sliderRef.current.swiper.update();
+  }, [showSlider]);
 
   const goToSlide = (index) => {
-    sliderRef.current.swiper.update();
-    sliderRef.current.swiper.slideTo(index);
-  };
-
-  const zoomImage = (e) => {
-    console.log(e);
+    sliderRef.current.swiper.slideTo(index, 0, false);
+    // console.log("go to slide: ", index);
+    // console.log("slider index: ", sliderRef.current.swiper.realIndex);
   };
 
   return (
@@ -100,12 +89,12 @@ const Post = ({ data }) => {
           zoom={true}
           navigation={true}
           modules={[Zoom, Navigation, EffectFade]}
+          observeSlideChildren={true}
           observer={true}
+          observeParents={true}
           loop={true}
-          watchOverflow={true}
           effect={"fade"}
           fadeEffect={{ crossFade: true }}
-          crossFade={true}
           style={{
             "--swiper-navigation-color": "#000",
             "--swiper-navigation-size": "24px",

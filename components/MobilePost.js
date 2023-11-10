@@ -1,10 +1,8 @@
 import Module from "./modules";
 import moment from "moment";
-import LeftArrow from "svg/LeftArrow";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { PortableText } from "@portabletext/react";
 import Close from "../svg/Close";
-import Slider from "react-slick";
 import LeftCarouselArrow from "svg/LeftCarouselArrow";
 import RightCarouselArrow from "svg/RightCarouselArrow";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -13,29 +11,41 @@ import "swiper/swiper-bundle.css";
 import "swiper/css";
 import "swiper/css/zoom";
 import "swiper/css/navigation";
-import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 
 const MobilePost = ({ data }) => {
   const [showSlider, setShowSlider] = useState(false);
 
   const sliderRef = useRef();
-  const settings = {
-    dots: false,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
-    fade: true,
-  };
 
   const goToSlide = (index) => {
     sliderRef.current.swiper.update();
-    sliderRef.current.swiper.slideTo(index);
+    sliderRef.current.swiper.slideTo(index, 0, false);
   };
+
   const imgStyle = (imgSrc) => ({
     backgroundImage: `url(${imgSrc})`,
   });
+
+  useEffect(() => {
+    if (data.modules == null) return;
+    let index = 0;
+    for (let i = 0; i < data.modules.length; i++) {
+      if (data.modules[i]._type == "fullWidth") {
+        if (data.modules[i].modules[0]._type == "artwork") {
+          data.modules[i].modules[0].carouselIndex = index++;
+        }
+      } else if (data.modules[i]._type == "fiftyFifty") {
+        let module = data.modules[i];
+        for (let j = 0; j < module.modules.length; j++) {
+          if (module.modules[j]._type == "artwork") {
+            module.modules[j].carouselIndex = index++;
+          }
+        }
+      }
+    }
+    sliderRef.current.swiper.update();
+  }, [data]);
 
   return (
     data && (
@@ -82,15 +92,15 @@ const MobilePost = ({ data }) => {
             zoom={true}
             modules={[Zoom, Navigation, EffectFade]}
             observer={true}
+            observeParents={true}
             loop={true}
-            watchOverflow={true}
             effect={"fade"}
-            fadeEffect={{ crossFade: true }}
-            crossFade={true}>
+            slidesPerView={1}
+            fadeEffect={{ crossFade: true }}>
             {data.modules?.map((module, key) => {
               if (module._type == "fullWidth") {
                 return module.modules[0]._type === "artwork" ? (
-                  <SwiperSlide>
+                  <SwiperSlide key={key}>
                     <div className="w-full h-screen px-0 md:px-48 flex flex-col-reverse md:flex-row justify-center items-center">
                       <div className=" w-full bottom-4 left-0 absolute md:static self-start md:self-end flex flex-col">
                         <div className="flex flex-row pb-2">
@@ -138,7 +148,7 @@ const MobilePost = ({ data }) => {
                 return module.modules.map(
                   (slide, key) =>
                     slide._type == "artwork" && (
-                      <SwiperSlide>
+                      <SwiperSlide key={key}>
                         <div className="w-full h-full px-0 md:px-48 flex flex-col-reverse md:flex-row justify-center items-center">
                           <div className=" w-full bottom-4 left-0 absolute md:static self-start md:self-end flex flex-col">
                             <div className="flex flex-row pb-2">
