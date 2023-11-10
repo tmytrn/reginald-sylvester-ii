@@ -1,4 +1,3 @@
-import { Lightbox } from "react-modal-image";
 import { useEffect } from "react";
 
 const Image = ({
