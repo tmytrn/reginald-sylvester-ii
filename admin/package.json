@@ -29,5 +29,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/tmytrn/reginald-sylvester-ii.git"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.5"
   }
 }
