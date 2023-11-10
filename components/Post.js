@@ -89,9 +89,7 @@ const Post = ({ data }) => {
           zoom={true}
           navigation={true}
           modules={[Zoom, Navigation, EffectFade]}
-          observeSlideChildren={true}
           observer={true}
-          observeParents={true}
           loop={true}
           effect={"fade"}
           fadeEffect={{ crossFade: true }}
