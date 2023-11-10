@@ -41,7 +41,7 @@ const Header = ({ page, data }) => {
           <LeftArrow />
         </a>
       </div>
-      <Link href="/">
+      <Link href="/" legacyBehavior>
         <motion.a
           variants={indexVariants}
           initial="initial"

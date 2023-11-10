@@ -82,6 +82,7 @@ export const categoryQuery = `
               _type,
               title,
               date,
+              dimensions,
               etc,
               image{
                 asset->{url}

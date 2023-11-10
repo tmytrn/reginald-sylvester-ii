@@ -1,15 +1,21 @@
 import Module from "./modules";
 import moment from "moment";
 import { PortableText } from "@portabletext/react";
-import Slider from "react-slick";
 import { useState, useEffect, useRef } from "react";
 import Close from "../svg/Close";
-import LeftCarouselArrow from "svg/LeftCarouselArrow";
-import RightCarouselArrow from "svg/RightCarouselArrow";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Zoom, Navigation, EffectFade } from "swiper/modules";
+import "swiper/swiper-bundle.css";
+import "swiper/css";
+import "swiper/css/zoom";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
 
 const Post = ({ data }) => {
   if (!data) return null;
   const [showSlider, setShowSlider] = useState(false);
+  const [isZooming, setIsZooming] = useState(false);
   const sliderRef = useRef();
   const settings = {
     dots: false,
@@ -44,14 +50,19 @@ const Post = ({ data }) => {
   });
 
   const goToSlide = (index) => {
-    sliderRef.current.slickGoTo(index);
+    sliderRef.current.swiper.update();
+    sliderRef.current.swiper.slideTo(index);
+  };
+
+  const zoomImage = (e) => {
+    console.log(e);
   };
 
   return (
     <>
       <div className="hidden md:flex flex-col ml-auto mr-0 relative w-full overflow-visible pt-24 mb-12 font-medium">
         {data.modules ? (
-          <div className="px-4 pt-4 font-medium">
+          <div className="px-4 pt-3 font-medium">
             <h3 className="text-sm uppercase font-medium pb-4">
               {data?.title}
               <br />
@@ -69,7 +80,7 @@ const Post = ({ data }) => {
             ))}
           </div>
         ) : (
-          <div className="px-4 pt-4 font-medium text-sm">
+          <div className="px-4 pt-3 font-medium text-sm">
             <PortableText value={data} />
           </div>
         )}
@@ -83,60 +94,93 @@ const Post = ({ data }) => {
           onClick={() => setShowSlider(false)}>
           <Close />
         </div>
-        <Slider ref={sliderRef} {...settings}>
+
+        <Swiper
+          ref={sliderRef}
+          zoom={true}
+          navigation={true}
+          modules={[Zoom, Navigation, EffectFade]}
+          observer={true}
+          loop={true}
+          watchOverflow={true}
+          effect={"fade"}
+          fadeEffect={{ crossFade: true }}
+          crossFade={true}
+          style={{
+            "--swiper-navigation-color": "#000",
+            "--swiper-navigation-size": "24px",
+          }}>
           {data.modules?.map((module, key) => {
             if (module._type == "fullWidth") {
-              return module.modules[0]._type === "artwork" ? (
-                <div key={key}>
-                  <div className="w-full h-screen px-0 sm:px-12 md:px-24 flex flex-col-reverse md:flex-row justify-center items-center">
-                    <div className="text-black w-full md:w-1/6 bottom-8 left-0 absolute self-start md:self-end flex flex-col">
-                      <span className="text-sm tracking-tight">
-                        {module.modules[0].title}
-                      </span>
-                      <span className="text-sm tracking-tight">
-                        {moment(module.modules[0].date).year()}
-                      </span>
-                      <span className="text-sm tracking-tight">
-                        {module.modules[0].etc ? module.modules[0].etc : ""}
-                      </span>
+              return (
+                module.modules[0]._type === "artwork" && (
+                  <SwiperSlide key={key}>
+                    <div className="w-full h-screen px-0 sm:px-12 md:px-24 flex flex-col-reverse md:flex-row justify-center items-center ">
+                      <div className="swiper-zoom-container">
+                        <img
+                          className="w-full h-[90%] hover:cursor-zoom-in"
+                          src={`${module.modules[0].image?.asset.url}?h=2169`}></img>
+                      </div>
+                      <div className="text-black w-full md:w-1/6 bottom-8 left-0 absolute self-start md:self-end flex flex-col">
+                        <span className="text-sm tracking-tight">
+                          {module.modules[0].title}
+                        </span>
+                        <span className="text-sm tracking-tight">
+                          {module.modules[0].date
+                            ? moment(module.modules[0].date).year()
+                            : ""}
+                        </span>
+                        <span className="text-sm tracking-tight">
+                          {module.modules[0].etc ? module.modules[0].etc : ""}
+                        </span>
+                        <span className="text-sm tracking-tight">
+                          {module.modules[0].dimensions
+                            ? module.modules[0].dimensions
+                            : ""}
+                        </span>
+                      </div>
                     </div>
-                    <figure
-                      className="w-full h-[90%] bg-contain bg-no-repeat bg-center"
-                      style={imgStyle(
-                        module.modules[0].image?.asset.url
-                      )}></figure>
-                  </div>
-                </div>
-              ) : null;
+                  </SwiperSlide>
+                )
+              );
             } else if (module._type == "fiftyFifty") {
               return module.modules.map(
                 (slide, key) =>
                   slide._type == "artwork" && (
-                    <div key={key}>
-                      <div className="w-full h-screen px-0 sm:px-12 md:px-24 flex justify-center items-center">
+                    <SwiperSlide key={key}>
+                      <div className="w-full h-full px-0 sm:px-12 md:px-24 flex justify-center items-center ">
                         <div className="w-full md:w-1/6 bottom-8 left-0 absolute self-start md:self-end flex flex-col">
                           <span className="text-sm tracking-tight">
                             {module.modules[0].title}
                           </span>
                           <span className="text-sm tracking-tight">
-                            {moment(module.modules[0].date).year()}
+                            {module.modules[0].date
+                              ? moment(module.modules[0].date).year()
+                              : ""}
                           </span>
                           <span className="text-sm tracking-tight">
                             {module.modules[0].etc ? module.modules[0].etc : ""}
                           </span>
+                          <span className="text-sm tracking-tight">
+                            {module.modules[0].dimensions
+                              ? module.modules[0].dimensions
+                              : ""}
+                          </span>
                         </div>
-                        <figure
-                          className="w-full h-[90%] bg-contain bg-no-repeat bg-center"
-                          style={imgStyle(slide.image?.asset.url)}></figure>
+                        <div className="swiper-zoom-container">
+                          <img
+                            className="w-full h-[90%] hover:cursor-zoom-in"
+                            src={`${slide.image?.asset.url}?max-h=2160`}></img>
+                        </div>
                       </div>
-                    </div>
+                    </SwiperSlide>
                   )
               );
             } else {
               return null;
             }
           })}
-        </Slider>
+        </Swiper>
       </div>
     </>
   );

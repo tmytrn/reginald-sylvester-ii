@@ -1,4 +1,3 @@
-import S from "@sanity/desk-tool/structure-builder";
 import { HiOutlineCog } from "react-icons/hi";
 
 // Add Schema type to hidden
@@ -6,7 +5,7 @@ const hiddenDocTypes = (listItem) => !["siteconfig"].includes(listItem.getId());
 
 // Render a custom UI to view siteconfig & pages
 // and showing other items except mentioed in the hiddendoctypes
-export default () =>
+export default (S) =>
   S.list()
     .title("Content Manager")
     .items([

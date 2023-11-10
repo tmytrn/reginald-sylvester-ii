@@ -1,5 +1,6 @@
 import { BsLayoutSplit } from "react-icons/bs";
 import React from "react";
+import { ImagePreview } from "./ImagePreview";
 export default {
   name: "fiftyFifty",
   title: "Fifty Fifty",
@@ -21,7 +22,6 @@ export default {
       validation: (Rule) => Rule.required().max(2),
     },
   ],
-
   preview: {
     select: {
       modules0title: "modules.0.title",
@@ -44,17 +44,11 @@ export default {
       modules1blocks,
     }) {
       let firstEntry, secondEntry;
-
       if (modules0title) {
         firstEntry = {
           title: modules0title,
           subtitle: modules0subtitle,
-          media: (
-            <img
-              src={`${modules0image}?w=64&h=64`}
-              alt={"image of: " + modules0title}
-            />
-          ),
+          media: ImagePreview(modules0image),
         };
       } else if (modules0blocks) {
         firstEntry = {
@@ -66,17 +60,11 @@ export default {
       } else {
         firstEntry = {};
       }
-
       if (modules1title) {
         secondEntry = {
           title: modules1title,
           subtitle: modules1subtitle,
-          media: (
-            <img
-              src={`${modules1image}?w=64&h=64`}
-              alt={"image of: " + modules1title}
-            />
-          ),
+          media: ImagePreview(modules1image),
         };
       } else if (modules1blocks) {
         secondEntry = {
@@ -88,7 +76,6 @@ export default {
       } else {
         secondEntry = {};
       }
-
       return {
         title: "Fifty Fifty: " + firstEntry.title + ", " + secondEntry.title,
         subitle: firstEntry.subtitle ? firstEntry.subtitle : " ",

@@ -43,17 +43,16 @@ const MyLayout = ({ page, children }) => {
     <LoaderContext.Provider
       value={{
         loaderDidRun: loaderDidRun,
+        setLoaderDidRun: setLoaderDidRun,
         showPost: showPost,
         setShowPost: setShowPost,
-      }}
-    >
+      }}>
       <AnimatePresence exitBeforeEnter>
         <motion.div
           variants={variants}
           animate="animate"
           initial="initial"
-          key="layout"
-        >
+          key="layout">
           <motion.div
             key="header"
             variants={loaderVariants}
@@ -62,8 +61,7 @@ const MyLayout = ({ page, children }) => {
             }`}
             onAnimationComplete={() => {
               setLoaderDidRun(true);
-            }}
-          >
+            }}>
             <Header page={page} />
           </motion.div>
           <motion.div key="main" variants={mainVariants}>

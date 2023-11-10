@@ -6,7 +6,6 @@ import { useState, useContext } from "react";
 import Footer from "components/Footer";
 import TextareaAutosize from "react-textarea-autosize";
 import LoaderContext from "components/LoaderContext";
-import MyLayout from "components/Layout";
 import { motion } from "framer-motion";
 import { getMetaData } from "data";
 
@@ -19,7 +18,7 @@ const Contact = ({ metaData }) => {
   const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [mailMessage, setMailMessage] = useState("");
-  const [loaderDidRun, setLoaderDidRun] = useContext(LoaderContext);
+  const { loaderDidRun, setLoaderDidRun } = useContext(LoaderContext);
 
   const labelStyles = "font-medium uppercase pr-2";
   const divStyles =

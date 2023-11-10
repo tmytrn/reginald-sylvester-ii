@@ -7,6 +7,14 @@ import Close from "../svg/Close";
 import Slider from "react-slick";
 import LeftCarouselArrow from "svg/LeftCarouselArrow";
 import RightCarouselArrow from "svg/RightCarouselArrow";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Zoom, Navigation, EffectFade } from "swiper/modules";
+import "swiper/swiper-bundle.css";
+import "swiper/css";
+import "swiper/css/zoom";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
 
 const MobilePost = ({ data }) => {
   const [showSlider, setShowSlider] = useState(false);
@@ -22,11 +30,13 @@ const MobilePost = ({ data }) => {
   };
 
   const goToSlide = (index) => {
-    sliderRef.current.slickGoTo(index);
+    sliderRef.current.swiper.update();
+    sliderRef.current.swiper.slideTo(index);
   };
   const imgStyle = (imgSrc) => ({
     backgroundImage: `url(${imgSrc})`,
   });
+
   return (
     data && (
       <>
@@ -67,22 +77,35 @@ const MobilePost = ({ data }) => {
             <Close />
           </div>
           <div></div>
-          <Slider ref={sliderRef} {...settings}>
+          <Swiper
+            ref={sliderRef}
+            zoom={true}
+            modules={[Zoom, Navigation, EffectFade]}
+            observer={true}
+            loop={true}
+            watchOverflow={true}
+            effect={"fade"}
+            fadeEffect={{ crossFade: true }}
+            crossFade={true}>
             {data.modules?.map((module, key) => {
               if (module._type == "fullWidth") {
                 return module.modules[0]._type === "artwork" ? (
-                  <div key={key} className="h-full">
-                    <div className="w-full h-full px-0 md:px-48 flex flex-col-reverse md:flex-row justify-center items-center">
-                      <div className="text-black w-full bottom-4 left-0 absolute md:static self-start md:self-end flex flex-col">
+                  <SwiperSlide>
+                    <div className="w-full h-screen px-0 md:px-48 flex flex-col-reverse md:flex-row justify-center items-center">
+                      <div className=" w-full bottom-4 left-0 absolute md:static self-start md:self-end flex flex-col">
                         <div className="flex flex-row pb-2">
                           <span
                             className="w-5 h-5 mr-1"
-                            onClick={() => sliderRef.current.slickPrev()}>
+                            onClick={() =>
+                              sliderRef.current.swiper.slidePrev()
+                            }>
                             <LeftCarouselArrow />
                           </span>
                           <span
                             className="w-5 h-5"
-                            onClick={() => sliderRef.current.slickNext()}>
+                            onClick={() =>
+                              sliderRef.current.swiper.slideNext()
+                            }>
                             <RightCarouselArrow />
                           </span>
                         </div>
@@ -95,20 +118,27 @@ const MobilePost = ({ data }) => {
                         <span className="text-sm tracking-tight">
                           {module.modules[0].etc ? module.modules[0].etc : ""}
                         </span>
+                        <span className="text-sm tracking-tight">
+                          {module.modules[0].dimensions
+                            ? module.modules[0].dimensions
+                            : ""}
+                        </span>
                       </div>
-                      <figure
-                        className="w-full h-full pt-[100%] bg-contain bg-no-repeat bg-center"
-                        style={imgStyle(
-                          module.modules[0].image?.asset.url
-                        )}></figure>
+                      <div className="swiper-zoom-container">
+                        <figure
+                          className="w-full h-full pt-[100%] bg-contain bg-no-repeat bg-center"
+                          style={imgStyle(
+                            module.modules[0].image?.asset.url
+                          )}></figure>
+                      </div>
                     </div>
-                  </div>
+                  </SwiperSlide>
                 ) : null;
               } else if (module._type == "fiftyFifty") {
                 return module.modules.map(
                   (slide, key) =>
                     slide._type == "artwork" && (
-                      <div key={key} className="h-full">
+                      <SwiperSlide>
                         <div className="w-full h-full px-0 md:px-48 flex flex-col-reverse md:flex-row justify-center items-center">
                           <div className=" w-full bottom-4 left-0 absolute md:static self-start md:self-end flex flex-col">
                             <div className="flex flex-row pb-2">
@@ -132,19 +162,26 @@ const MobilePost = ({ data }) => {
                             <span className="text-sm tracking-tight">
                               {slide.etc ? slide.etc : ""}
                             </span>
+                            <span className="text-sm tracking-tight">
+                              {module.modules[0].dimensions
+                                ? module.modules[0].dimensions
+                                : ""}
+                            </span>
                           </div>
-                          <figure
-                            className="w-full h-full bg-contain bg-no-repeat bg-center"
-                            style={imgStyle(slide.image?.asset.url)}></figure>
+                          <div className="swiper-zoom-container">
+                            <figure
+                              className="w-full h-full bg-contain bg-no-repeat bg-center"
+                              style={imgStyle(slide.image?.asset.url)}></figure>
+                          </div>
                         </div>
-                      </div>
+                      </SwiperSlide>
                     )
                 );
               } else {
                 return null;
               }
             })}
-          </Slider>
+          </Swiper>
         </div>
       </>
     )

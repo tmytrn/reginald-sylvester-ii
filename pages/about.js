@@ -14,7 +14,7 @@ import LoaderContext from "components/LoaderContext";
 
 const About = ({ data }) => {
   data = data[0];
-  const [loaderDidRun, setLoaderDidRun] = useContext(LoaderContext);
+  const { loaderDidRun, setLoaderDidRun } = useContext(LoaderContext);
   return (
     <>
       <Head>

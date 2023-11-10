@@ -84,8 +84,8 @@ function Home({ metaData, categories, bio, cv, preview }) {
                       className={`pt-3 pb-1 flex justify-between border-b-2 border-black align-middle cursor-pointer text-sm font-medium uppercase  ${
                         currentPost?.slug?.current ==
                           category.posts[0]?.slug.current && showPost
-                          ? "text-regi-red font-medium pt-[8px] mb-[0px] border-regi-red"
-                          : "pt-[8px] mb-[0px]"
+                          ? "text-regi-red font-medium pt-3 mb-[0px] border-regi-red"
+                          : "pt-3 mb-[0px]"
                       }`}
                       key={"post-" + category.posts[0]?._id}
                       onClick={() => {
@@ -176,7 +176,7 @@ function Home({ metaData, categories, bio, cv, preview }) {
                   <a
                     href="https://nexus-design-house.myshopify.com"
                     className={`flex justify-between border-b-2 border-black pt-3 pb-1 align-middle cursor-pointer text-sm font-medium uppercase`}>
-                    Nexus Design House
+                    Design
                     <span
                       className={`w-2.5 h-2.5 text-center mt-[-2px] mb-auto isOpen ? "fill-regi-red border-regi-red" : " "`}>
                       <Dot color={"#000"} />

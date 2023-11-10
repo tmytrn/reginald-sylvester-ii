@@ -62,6 +62,10 @@ textarea{
   }
 }
 
+.zoom{
+transform: scale(2.0);
+}
+
 /* @media screen and (-webkit-min-device-pixel-ratio:0) { 
 .h-screen{
   margin-bottom: px;
