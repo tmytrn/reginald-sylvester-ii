@@ -204,6 +204,37 @@ export async function getStaticProps({ params, preview = false }) {
   const { categories } = result[0];
   const { bio, cv } = about[0];
 
+  // console.log(categories);
+
+  for (let c = 0; c < categories.length; c++) {
+    for (let p = 0; p < categories[c].posts.length; p++) {
+      // console.log(categories[c].posts[p].modules);
+      let index = 0;
+      if (categories[c].posts[p].modules != null) {
+        for (let i = 0; i < categories[c].posts[p].modules.length; i++) {
+          // console.log("tag images");
+          if (categories[c].posts[p].modules[i]._type == "fullWidth") {
+            if (
+              categories[c].posts[p].modules[i].modules[0]._type == "artwork"
+            ) {
+              // console.log("index: ", index);
+              categories[c].posts[p].modules[i].modules[0].carouselIndex =
+                index++;
+            }
+          } else if (categories[c].posts[p].modules[i]._type == "fiftyFifty") {
+            let module = data.modules[i];
+            for (let j = 0; j < module.modules.length; j++) {
+              if (module.modules[j]._type == "artwork") {
+                // console.log("index: ", index);
+                module.modules[j].carouselIndex = index++;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
   return {
     props: {
       categories: categories,

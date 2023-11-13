@@ -9,6 +9,7 @@ const Image = ({
   goToSlide,
   imageIndex,
 }) => {
+  // console.log("imageIndex: ", imageIndex);
   return (
     <img
       src={`${src}?w=${width}${height ? "&h=" + height : ""}`}

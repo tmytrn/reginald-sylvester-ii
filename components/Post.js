@@ -14,26 +14,9 @@ import "swiper/css/effect-fade";
 const Post = ({ data }) => {
   if (!data) return null;
   const [showSlider, setShowSlider] = useState(false);
-  const [isZooming, setIsZooming] = useState(false);
   const sliderRef = useRef();
 
   useEffect(() => {
-    if (data.modules == null) return;
-    let index = 0;
-    for (let i = 0; i < data.modules.length; i++) {
-      if (data.modules[i]._type == "fullWidth") {
-        if (data.modules[i].modules[0]._type == "artwork") {
-          data.modules[i].modules[0].carouselIndex = index++;
-        }
-      } else if (data.modules[i]._type == "fiftyFifty") {
-        let module = data.modules[i];
-        for (let j = 0; j < module.modules.length; j++) {
-          if (module.modules[j]._type == "artwork") {
-            module.modules[j].carouselIndex = index++;
-          }
-        }
-      }
-    }
     sliderRef.current.swiper.update();
   }, [data]);
 
@@ -42,7 +25,7 @@ const Post = ({ data }) => {
   }, [showSlider]);
 
   const goToSlide = (index) => {
-    sliderRef.current.swiper.slideTo(index, 0, false);
+    sliderRef.current.swiper.slideToLoop(index, 0, false);
     // console.log("go to slide: ", index);
     // console.log("slider index: ", sliderRef.current.swiper.realIndex);
   };
