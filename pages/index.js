@@ -96,7 +96,7 @@ function Home({ metaData, categories, bio, cv, preview }) {
                       }}
                       data-category={category.posts[0]?.slug.current}>
                       {category.posts[0]?.title}
-                      <span
+                      {/* <span
                         className={`w-2.5 h-2.5 text-center mt-[-2px] mb-auto isOpen ? "fill-regi-red border-regi-red" : " "`}>
                         <Dot
                           color={
@@ -106,7 +106,7 @@ function Home({ metaData, categories, bio, cv, preview }) {
                               : "#000"
                           }
                         />
-                      </span>
+                      </span> */}
                     </a>
                   ) : (
                     <Accordion
@@ -165,10 +165,10 @@ function Home({ metaData, categories, bio, cv, preview }) {
                     href="https://natchez-store.myshopify.com/"
                     className={`flex justify-between border-b-2 border-black pt-3 pb-1 align-middle cursor-pointer text-sm font-medium uppercase`}>
                     Natchez
-                    <span
+                    {/* <span
                       className={`w-2.5 h-2.5 text-center mt-[-2px] mb-auto isOpen ? "fill-regi-red border-regi-red" : " "`}>
                       <Dot color={"#000"} />
-                    </span>
+                    </span> */}
                   </a>
                 </div>
                 <div className="">
@@ -176,10 +176,10 @@ function Home({ metaData, categories, bio, cv, preview }) {
                     href="https://nexus-design-house.myshopify.com"
                     className={`flex justify-between border-b-2 border-black pt-3 pb-1 align-middle cursor-pointer text-sm font-medium uppercase`}>
                     Design
-                    <span
+                    {/* <span
                       className={`w-2.5 h-2.5 text-center mt-[-2px] mb-auto isOpen ? "fill-regi-red border-regi-red" : " "`}>
                       <Dot color={"#000"} />
-                    </span>
+                    </span> */}
                   </a>
                 </div>
               </div>
@@ -217,15 +217,15 @@ export async function getStaticProps({ params, preview = false }) {
             if (
               categories[c].posts[p].modules[i].modules[0]._type == "artwork"
             ) {
-              // console.log("index: ", index);
               categories[c].posts[p].modules[i].modules[0].carouselIndex =
                 index++;
             }
           } else if (categories[c].posts[p].modules[i]._type == "fiftyFifty") {
-            let module = data.modules[i];
+            // console.log("fifityfifty");
+            let module = categories[c].posts[p].modules[i];
             for (let j = 0; j < module.modules.length; j++) {
               if (module.modules[j]._type == "artwork") {
-                // console.log("index: ", index);
+                // console.log("module: ", module.modules[j]);
                 module.modules[j].carouselIndex = index++;
               }
             }

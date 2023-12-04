@@ -19,7 +19,7 @@ const FullWidth = ({ data, setShowSlider, goToSlide }) => {
       <div className="py-2">
         <div className="w-full font-normal text-base aspect-video">
           <Image
-            styles={"cursor-pointer"}
+            styles={"cursor-zoom-in"}
             src={data.image?.asset.url}
             width={1080}
             setShowSlider={setShowSlider}

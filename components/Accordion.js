@@ -17,10 +17,10 @@ const Accordion = (props) => {
         }`}
         onClick={() => setExpanded(isOpen ? false : true)}>
         {props.title}
-        <span
+        {/* <span
           className={`w-2.5 h-2.5 text-center mt-[-2px] mb-auto isOpen ? "fill-regi-red border-regi-red" : " "`}>
           <Dot color={isOpen ? "#540d08" : "#000"} />
-        </span>
+        </span> */}
       </a>
       <AnimatePresence initial={false}>
         {isOpen && (

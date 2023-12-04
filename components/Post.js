@@ -38,8 +38,7 @@ const Post = ({ data }) => {
             <h3 className="text-sm uppercase font-medium pb-4">
               {data?.title}
               <br />
-              {data?.location}
-              <br />
+              {data?.location ? `${data.location} ${(<br />)}` : null}
               {moment(data?.date).year()}
             </h3>
             {data.modules.map((module, key) => (
@@ -88,7 +87,7 @@ const Post = ({ data }) => {
                     <div className="w-full h-screen px-0 sm:px-12 md:px-24 flex flex-col-reverse md:flex-row justify-center items-center ">
                       <div className="swiper-zoom-container">
                         <img
-                          className="w-full h-[90%] hover:cursor-zoom-in"
+                          className="w-full h-[90%] "
                           src={`${module.modules[0].image?.asset.url}?h=2169`}></img>
                       </div>
                       <div className="text-black w-full md:w-1/6 bottom-8 left-0 absolute self-start md:self-end flex flex-col">
@@ -118,28 +117,30 @@ const Post = ({ data }) => {
                 (slide, key) =>
                   slide._type == "artwork" && (
                     <SwiperSlide key={key}>
-                      <div className="w-full h-full px-0 sm:px-12 md:px-24 flex justify-center items-center ">
+                      <div className="w-full h-screen px-0 sm:px-12 md:px-24 flex justify-center items-center ">
                         <div className="w-full md:w-1/6 bottom-8 left-0 absolute self-start md:self-end flex flex-col">
                           <span className="text-sm tracking-tight">
-                            {module.modules[0].title}
+                            {module.modules[key].title}
                           </span>
                           <span className="text-sm tracking-tight">
-                            {module.modules[0].date
-                              ? moment(module.modules[0].date).year()
+                            {module.modules[key].date
+                              ? moment(module.modules[key].date).year()
                               : ""}
                           </span>
                           <span className="text-sm tracking-tight">
-                            {module.modules[0].etc ? module.modules[0].etc : ""}
+                            {module.modules[key].etc
+                              ? module.modules[key].etc
+                              : ""}
                           </span>
                           <span className="text-sm tracking-tight">
-                            {module.modules[0].dimensions
-                              ? module.modules[0].dimensions
+                            {module.modules[key].dimensions
+                              ? module.modules[key].dimensions
                               : ""}
                           </span>
                         </div>
                         <div className="swiper-zoom-container">
                           <img
-                            className="w-full h-[90%] hover:cursor-zoom-in"
+                            className="w-full h-[90%]"
                             src={`${slide.image?.asset.url}?max-h=2160`}></img>
                         </div>
                       </div>

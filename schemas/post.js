@@ -24,7 +24,6 @@ export default {
       name: "location",
       title: "Location",
       type: "string",
-      validation: (Rule) => Rule.required(),
     },
     {
       name: "date",

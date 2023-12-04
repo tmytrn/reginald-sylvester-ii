@@ -66,6 +66,11 @@ textarea{
 transform: scale(2.0);
 }
 
+.swiper-slide {
+  cursor:zoom-in;
+}
+
+
 /* @media screen and (-webkit-min-device-pixel-ratio:0) { 
 .h-screen{
   margin-bottom: px;

@@ -33,16 +33,17 @@ export default {
       modules1image: "modules.1.image.asset.url",
       modules1blocks: "modules.1.blocks",
     },
-    prepare({
-      modules0title,
-      modules0subtitle,
-      modules0image,
-      modules0blocks,
-      modules1title,
-      modules1subtitle,
-      modules1image,
-      modules1blocks,
-    }) {
+    prepare(selection) {
+      const {
+        modules0title,
+        modules0subtitle,
+        modules0image,
+        modules0blocks,
+        modules1title,
+        modules1subtitle,
+        modules1image,
+        modules1blocks,
+      } = selection;
       let firstEntry, secondEntry;
       if (modules0title) {
         firstEntry = {
@@ -77,9 +78,9 @@ export default {
         secondEntry = {};
       }
       return {
-        title: "Fifty Fifty: " + firstEntry.title + ", " + secondEntry.title,
-        subitle: firstEntry.subtitle ? firstEntry.subtitle : " ",
-        media: firstEntry.media ? firstEntry.media : " ",
+        title: "Fifty Fifty: " + firstEntry?.title + ", " + secondEntry?.title,
+        subitle: firstEntry?.subtitle ? firstEntry?.subtitle : "Untitled",
+        media: firstEntry.media ? firstEntry?.media : secondEntry.media,
       };
     },
   },

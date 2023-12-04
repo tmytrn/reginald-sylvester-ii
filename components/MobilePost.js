@@ -136,12 +136,16 @@ const MobilePost = ({ data }) => {
                           <div className="flex flex-row pb-2">
                             <span
                               className="w-5 h-5 mr-1"
-                              onClick={() => sliderRef.current.slickPrev()}>
+                              onClick={() =>
+                                sliderRef.current.swiper.slidePrev()
+                              }>
                               <LeftCarouselArrow />
                             </span>
                             <span
                               className="w-5 h-5"
-                              onClick={() => sliderRef.current.slickNext()}>
+                              onClick={() =>
+                                sliderRef.current.swiper.slideNext()
+                              }>
                               <RightCarouselArrow />
                             </span>
                           </div>
@@ -155,8 +159,8 @@ const MobilePost = ({ data }) => {
                             {slide.etc ? slide.etc : ""}
                           </span>
                           <span className="text-sm tracking-tight">
-                            {module.modules[0].dimensions
-                              ? module.modules[0].dimensions
+                            {module.modules[key].dimensions
+                              ? module.modules[key].dimensions
                               : ""}
                           </span>
                         </div>
