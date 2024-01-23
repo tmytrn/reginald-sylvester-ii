@@ -19,7 +19,7 @@ export default async (req, res) => {
   const mailer = () => {
     let mailBody = {
       from: email, // sender address
-      to: "tommy@tmytrn.com", // list of receivers
+      to: "rgnldslvstr@gmail.com", // list of receivers
       subject: subject, // Subject line
       html: message, // html body
     };
