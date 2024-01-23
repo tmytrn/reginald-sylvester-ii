@@ -16,12 +16,13 @@ export default async (req, res) => {
 
   // console.log(req.body);
 
+  let msg = `<p>Name: ${name}</p><p>Email: ${email}</p><p>Message: ${message}</p>`;
   const mailer = () => {
     let mailBody = {
       from: email, // sender address
       to: "rgnldslvstr@gmail.com", // list of receivers
       subject: subject, // Subject line
-      html: message, // html body
+      html: msg, // html body
     };
     return new Promise((resolve, reject) => {
       transporter.sendMail(mailBody, (error, info) =>
