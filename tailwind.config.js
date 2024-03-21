@@ -10,6 +10,7 @@ module.exports = {
       sans: ["Gotham", "sans-serif"],
     },
     fontSize: {
+      xs: ["10px", "16px"],
       sm: ["14px", "16px"],
     },
     extend: {
@@ -29,6 +30,7 @@ module.exports = {
       },
       width: {
         "half-spaced": "calc(50% - 0.5rem)",
+        fifteen: "15%",
       },
     },
   },

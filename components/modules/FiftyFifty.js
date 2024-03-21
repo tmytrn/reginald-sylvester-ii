@@ -28,10 +28,10 @@ const FiftyFifty = ({ data, setShowSlider, goToSlide }) => {
                   goToSlide={goToSlide}
                   imageIndex={module.carouselIndex}
                 />
-                <div className="text-center text-sm mt-2">{`${
+                {/* <div className="text-center text-sm mt-2">{`${
                   module.title
                 } (${moment(module.date).year()})
-                `}</div>
+                `}</div> */}
               </div>
             </div>
           );

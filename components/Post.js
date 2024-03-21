@@ -30,16 +30,22 @@ const Post = ({ data }) => {
     // console.log("slider index: ", sliderRef.current.swiper.realIndex);
   };
 
+  console.log(data.location);
+
   return (
     <>
       <div className="hidden md:flex flex-col ml-auto mr-0 relative w-full overflow-visible pt-24 mb-12 font-medium">
         {data.modules ? (
           <div className="px-4 pt-3 font-medium">
             <h3 className="text-sm uppercase font-medium pb-4">
-              {data?.title}
+              {data.title && data.title}
               <br />
-              {data?.location ? `${data.location} ${(<br />)}` : null}
-              {moment(data?.date).year()}
+              {data.location ? (
+                <>
+                  {data.location} <br />
+                </>
+              ) : null}
+              {data.date && moment(data.date).year()}
             </h3>
             {data.modules.map((module, key) => (
               <Module
@@ -59,7 +65,7 @@ const Post = ({ data }) => {
       <div
         className={`${
           showSlider ? "block z-50 " : "hidden z-0"
-        } w-full h-screen fixed top-0 left-0 bg-reginald-gray px-4 md:px-8 flex-row`}>
+        } w-full h-screen fixed top-0 left-0 bg-gray-50 px-4 md:px-8 flex-row`}>
         <div
           className="absolute top-4 right-4 z-50 cursor-pointer"
           onClick={() => setShowSlider(false)}>
@@ -90,19 +96,19 @@ const Post = ({ data }) => {
                           className="w-full h-[90%] "
                           src={`${module.modules[0].image?.asset.url}?h=2169`}></img>
                       </div>
-                      <div className="text-black w-full md:w-1/6 bottom-8 left-0 absolute self-start md:self-end flex flex-col">
-                        <span className="text-sm tracking-tight">
+                      <div className="text-black w-full md:w-fifteen bottom-8 left-0 absolute self-start md:self-end flex flex-col">
+                        <span className="text-xs tracking-tight">
                           {module.modules[0].title}
                         </span>
-                        <span className="text-sm tracking-tight">
+                        <span className="text-xs tracking-tight">
                           {module.modules[0].date
                             ? moment(module.modules[0].date).year()
                             : ""}
                         </span>
-                        <span className="text-sm tracking-tight">
+                        <span className="text-xs tracking-tight">
                           {module.modules[0].etc ? module.modules[0].etc : ""}
                         </span>
-                        <span className="text-sm tracking-tight">
+                        <span className="text-xs tracking-tight">
                           {module.modules[0].dimensions
                             ? module.modules[0].dimensions
                             : ""}
@@ -118,21 +124,21 @@ const Post = ({ data }) => {
                   slide._type == "artwork" && (
                     <SwiperSlide key={key}>
                       <div className="w-full h-screen px-0 sm:px-12 md:px-24 flex justify-center items-center ">
-                        <div className="w-full md:w-1/6 bottom-8 left-0 absolute self-start md:self-end flex flex-col">
-                          <span className="text-sm tracking-tight">
+                        <div className="w-full md:w-fifteen bottom-8 left-0 absolute self-start md:self-end flex flex-col">
+                          <span className="text-xs tracking-tight">
                             {module.modules[key].title}
                           </span>
-                          <span className="text-sm tracking-tight">
+                          <span className="text-xs tracking-tight">
                             {module.modules[key].date
                               ? moment(module.modules[key].date).year()
                               : ""}
                           </span>
-                          <span className="text-sm tracking-tight">
+                          <span className="text-xs tracking-tight">
                             {module.modules[key].etc
                               ? module.modules[key].etc
                               : ""}
                           </span>
-                          <span className="text-sm tracking-tight">
+                          <span className="text-xs tracking-tight">
                             {module.modules[key].dimensions
                               ? module.modules[key].dimensions
                               : ""}
