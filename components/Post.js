@@ -30,23 +30,27 @@ const Post = ({ data }) => {
     // console.log("slider index: ", sliderRef.current.swiper.realIndex);
   };
 
-  console.log(data.location);
-
   return (
     <>
       <div className="hidden md:flex flex-col ml-auto mr-0 relative w-full overflow-visible pt-24 mb-12 font-medium">
         {data.modules ? (
           <div className="px-4 pt-3 font-medium">
-            <h3 className="text-sm uppercase font-medium pb-4">
-              {data.title && data.title}
-              <br />
-              {data.location ? (
-                <>
-                  {data.location} <br />
-                </>
-              ) : null}
-              {data.date && moment(data.date).year()}
-            </h3>
+            {data.title && data.title != "Selected Works" ? (
+              <h3 className="text-sm uppercase font-medium pb-2">
+                {data.title}
+              </h3>
+            ) : null}
+
+            {data.location ? (
+              <h3 className="text-sm uppercase font-medium pb-2">
+                {data.location} <br />
+              </h3>
+            ) : null}
+            {data.date && (
+              <h3 className="text-sm uppercase font-medium pb-4">
+                {moment(data.date).year()}
+              </h3>
+            )}
             {data.modules.map((module, key) => (
               <Module
                 key={key}
